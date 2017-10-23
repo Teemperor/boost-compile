@@ -26,7 +26,22 @@
 #include <boost/convert.hpp>
 #include <boost/crc.hpp>
 #include <boost/cregex.hpp>
-#include <boost/cstdfloat.hpp>
+// cstdfloat.hpp has to be skipped because of:
+/*******************************
+/home/teemperor/boost-compile/inc/boost/math/cstdfloat/cstdfloat_cmath.hpp:539:43: error: ‘boost::math::cstdfloat::detail::float_internal128_t boost::math::cstdfloat::detail::abs(boost::math::cstdfloat::detail::float_internal128_t)’ conflicts with a previous declaration
+     using boost::math::cstdfloat::detail::abs;
+                                           ^~~
+In file included from /usr/include/c++/7.2.0/cstdlib:77:0,
+                 from /home/teemperor/boost-compile/inc/boost/config/platform/linux.hpp:15,
+                 from /home/teemperor/boost-compile/inc/boost/config.hpp:57,
+                 from /home/teemperor/boost-compile/inc/boost/type_traits/aligned_storage.hpp:18,
+                 from /home/teemperor/boost-compile/inc/boost/aligned_storage.hpp:16,
+                 from /home/teemperor/boost-compile/compile.cpp:1:
+/usr/include/c++/7.2.0/bits/std_abs.h:102:3: note: previous declaration ‘constexpr __float128 std::abs(__float128)’
+   abs(__float128 __x)
+   ^~~
+********************************/
+//#include <boost/cstdfloat.hpp>
 #include <boost/cstdint.hpp>
 #include <boost/cstdlib.hpp>
 #include <boost/current_function.hpp>
