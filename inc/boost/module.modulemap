@@ -221,7 +221,6 @@ module archive {
   module "archive__binary_woarchive" { header "archive/binary_woarchive.hpp" export * }
   module "archive__codecvt_null" { header "archive/codecvt_null.hpp" export * }
   module "archive__detail__archive_serializer_map" { header "archive/detail/archive_serializer_map.hpp" export * }
-  module "archive__detail__auto_link_archive" { header "archive/detail/auto_link_archive.hpp" export * }
   module "archive__detail__auto_link_warchive" { header "archive/detail/auto_link_warchive.hpp" export * }
   module "archive__detail__basic_iarchive" { header "archive/detail/basic_iarchive.hpp" export * }
   module "archive__detail__basic_iserializer" { header "archive/detail/basic_iserializer.hpp" export * }
@@ -238,7 +237,6 @@ module archive {
   module "archive__detail__interface_oarchive" { header "archive/detail/interface_oarchive.hpp" export * }
   module "archive__detail__oserializer" { header "archive/detail/oserializer.hpp" export * }
   module "archive__detail__polymorphic_oarchive_route" { header "archive/detail/polymorphic_oarchive_route.hpp" export * }
-  module "archive__detail__register_archive" { header "archive/detail/register_archive.hpp" export * }
   module "archive__detail__utf8_codecvt_facet" { header "archive/detail/utf8_codecvt_facet.hpp" export * }
   module "archive__dinkumware" { header "archive/dinkumware.hpp" export * }
   module "archive__impl__basic_xml_grammar" { header "archive/impl/basic_xml_grammar.hpp" export * }
@@ -273,6 +271,8 @@ module archive {
   module "archive__xml_oarchive" { header "archive/xml_oarchive.hpp" export * }
   module "archive__xml_woarchive" { header "archive/xml_woarchive.hpp" export * }
 }
+module "archive__detail__auto_link_archive" { header "archive/detail/auto_link_archive.hpp" export * }
+module "archive__detail__register_archive" { header "archive/detail/register_archive.hpp" export * }
 module array {
   module "array" { header "array.hpp" export * }
 }
@@ -6419,13 +6419,13 @@ module serialization {
   module "serialization__valarray" { header "serialization/valarray.hpp" export * }
   module "serialization__variant" { header "serialization/variant.hpp" export * }
   module "serialization__vector_135" { header "serialization/vector_135.hpp" export * }
-  module "serialization__vector" { header "serialization/vector.hpp" export * }
   module "serialization__version" { header "serialization/version.hpp" export * }
   module "serialization__void_cast_fwd" { header "serialization/void_cast_fwd.hpp" export * }
   module "serialization__void_cast" { header "serialization/void_cast.hpp" export * }
   module "serialization__weak_ptr" { header "serialization/weak_ptr.hpp" export * }
   module "serialization__wrapper" { header "serialization/wrapper.hpp" export * }
 }
+module "serialization__vector" { header "serialization/vector.hpp" export * }
 module shared_array {
   module "shared_array" { header "shared_array.hpp" export * }
 }
