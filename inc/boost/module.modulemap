@@ -5085,12 +5085,13 @@ module boost_none_t {
 module boost_non_type {
   module "non_type" { header "non_type.hpp" export * }
 }
-module boost_numeric {
 module boost_cast {
   module "cast" { header "cast.hpp" export * }
-}
-  module "numeric__conversion__bounds" { header "numeric/conversion/bounds.hpp" export * }
+  module "polymorphic_cast" { header "polymorphic_cast.hpp" export * }
   module "numeric__conversion__cast" { header "numeric/conversion/cast.hpp" export * }
+}
+module boost_numeric {
+  module "numeric__conversion__bounds" { header "numeric/conversion/bounds.hpp" export * }
   module "numeric__conversion__conversion_traits" { header "numeric/conversion/conversion_traits.hpp" export * }
   module "numeric__conversion__converter" { header "numeric/conversion/converter.hpp" export * }
   module "numeric__conversion__detail__bounds" { header "numeric/conversion/detail/bounds.hpp" export * }
@@ -5489,9 +5490,6 @@ module boost_polygon {
   module "polygon__voronoi_diagram" { header "polygon/voronoi_diagram.hpp" export * }
   module "polygon__voronoi_geometry_type" { header "polygon/voronoi_geometry_type.hpp" export * }
   module "polygon__voronoi" { header "polygon/voronoi.hpp" export * }
-}
-module boost_polymorphic_cast {
-  module "polymorphic_cast" { header "polymorphic_cast.hpp" export * }
 }
 module boost_polymorphic_pointer_cast {
   module "polymorphic_pointer_cast" { header "polymorphic_pointer_cast.hpp" export * }
