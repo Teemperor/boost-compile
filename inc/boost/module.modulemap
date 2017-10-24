@@ -713,9 +713,6 @@ module boost_blank_fwd {
 module boost_blank {
   module "blank" { header "blank.hpp" export * }
 }
-module boost_cast {
-  module "cast" { header "cast.hpp" export * }
-}
 module boost_cerrno {
   module "cerrno" { header "cerrno.hpp" export * }
 }
@@ -5089,6 +5086,9 @@ module boost_non_type {
   module "non_type" { header "non_type.hpp" export * }
 }
 module boost_numeric {
+module boost_cast {
+  module "cast" { header "cast.hpp" export * }
+}
   module "numeric__conversion__bounds" { header "numeric/conversion/bounds.hpp" export * }
   module "numeric__conversion__cast" { header "numeric/conversion/cast.hpp" export * }
   module "numeric__conversion__conversion_traits" { header "numeric/conversion/conversion_traits.hpp" export * }
