@@ -713,9 +713,7 @@ module boost_blank_fwd {
 module boost_blank {
   module "blank" { header "blank.hpp" export * }
 }
-module boost_cast {
-  module "cast" { header "cast.hpp" export * }
-}
+module "cast" { header "cast.hpp" export * }
 module boost_cerrno {
   module "cerrno" { header "cerrno.hpp" export * }
 }
