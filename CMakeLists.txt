@@ -29,4 +29,5 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 include_directories(inc)
 
+add_library(cms-test OBJECT cms.cpp)
 add_library(boost-test OBJECT compile.cpp)
