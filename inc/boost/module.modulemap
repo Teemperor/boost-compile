@@ -5170,8 +5170,6 @@ module boost_qvm {
   module "qvm__vec_traits_defaults" { header "qvm/vec_traits_defaults.hpp" export * }
   module "qvm__vec_traits" { header "qvm/vec_traits.hpp" export * }
 }
-// This modules form a cycle, so we want to create a wrapper module for them
-module boost_modules_wrapper {
 
 module boost_thread {
   module "thread__caller_context" { header "thread/caller_context.hpp" export * }
@@ -7703,7 +7701,6 @@ In file included from <module-includes>:2348:
     module "range__sub_range" { header "range/sub_range.hpp" export * }
     module "range__value_type" { header "range/value_type.hpp" export * }
   }
-}
 module boost_ratio {
   module "ratio__config" { header "ratio/config.hpp" export * }
   module "ratio__detail__mpl__abs" { header "ratio/detail/mpl/abs.hpp" export * }
