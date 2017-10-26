@@ -4477,14 +4477,14 @@ module boost_multi_index_wrapper {
     module "multi_index__detail__hash_index_node" { header "multi_index/detail/hash_index_node.hpp" export * }
     module "multi_index__detail__has_tag" { header "multi_index/detail/has_tag.hpp" export * }
     module "multi_index__detail__header_holder" { header "multi_index/detail/header_holder.hpp" export * }
-    /*
-    /home/travis/build/Teemperor/boost-compile/inc/boost/multi_index/detail/index_node_base.hpp:52:1: fatal error: import of module 'boost_multi_index_wrapper.boost_multi_index.multi_index__detail__ignore_wstrict_aliasing' appears within 'index_node_base<Value, Allocator>'
-    */
-    // module "multi_index__detail__ignore_wstrict_aliasing" { header "multi_index/detail/ignore_wstrict_aliasing.hpp" export * }
+    module "multi_index__detail__ignore_wstrict_aliasing" { header "multi_index/detail/ignore_wstrict_aliasing.hpp" export * }
     module "multi_index__detail__index_base" { header "multi_index/detail/index_base.hpp" export * }
     module "multi_index__detail__index_loader" { header "multi_index/detail/index_loader.hpp" export * }
     module "multi_index__detail__index_matcher" { header "multi_index/detail/index_matcher.hpp" export * }
-    module "multi_index__detail__index_node_base" { header "multi_index/detail/index_node_base.hpp" export * }
+    /*
+    /home/travis/build/Teemperor/boost-compile/inc/boost/multi_index/detail/index_node_base.hpp:52:1: fatal error: import of module 'boost_multi_index_wrapper.boost_multi_index.multi_index__detail__ignore_wstrict_aliasing' appears within 'index_node_base<Value, Allocator>'
+    */
+    // module "multi_index__detail__index_node_base" { header "multi_index/detail/index_node_base.hpp" export * }
     module "multi_index__detail__index_saver" { header "multi_index/detail/index_saver.hpp" export * }
     module "multi_index__detail__invariant_assert" { header "multi_index/detail/invariant_assert.hpp" export * }
     module "multi_index__detail__is_index_list" { header "multi_index/detail/is_index_list.hpp" export * }
