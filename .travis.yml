@@ -1,37 +1,36 @@
-language: cpp
-
-notifications:
-  email: false
+sudo: required
 
 branches:
   only:
     - master
 
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      compiler: clang
-      addons:
-        apt:
-          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
-          packages: ['clang-5.0', 'g++-7', 'gcc-7']
-      env:
-        - MODULES=On
-        - CXX_COMPILER=clang++-5.0
-        - COMPILER=clang-5.0
+language: c++
 
-    - os: linux
-      dist: trusty
-      compiler: clang
-      addons:
-        apt:
-          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
-          packages: ['clang-5.0', 'g++-7', 'gcc-7']
-      env:
-        - MODULES=Off
-        - CXX_COMPILER=clang++-5.0
-        - COMPILER=clang-5.0
+compiler:
+  - gcc
+  - clang
+
+notifications:
+  email: false
+
+arch:
+  packages:
+    - cmake
+    - clang
+    - clang-tools-extra
+    - llvm-libs
+    - llvm
+    - valgrind
+  - env:
+    - MODULES=On
+    - CXX_COMPILER=clang++-5.0
+    - COMPILER=clang-5.0
+  - env:
+    - MODULES=Off
+    - CXX_COMPILER=clang++-5.0
+    - COMPILER=clang-5.0
+  script:
+    - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
 
 script:
-  - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
