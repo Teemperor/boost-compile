@@ -12,6 +12,11 @@ compiler:
 notifications:
   email: false
 
+env:
+  - MODULES=On
+  - CXX_COMPILER=clang++-5.0
+  - COMPILER=clang-5.0
+
 arch:
   packages:
     - cmake
@@ -19,10 +24,6 @@ arch:
     - clang-tools-extra
     - llvm-libs
     - llvm
-  env:
-    - MODULES=On
-    - CXX_COMPILER=clang++-5.0
-    - COMPILER=clang-5.0
   script:
     - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
 
