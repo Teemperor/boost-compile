@@ -13,8 +13,8 @@ notifications:
   email: false
 
 env:
-  - MODULES=On CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
-  - MODULES=Off CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+  - MODULES=On CXX_COMPILER=clang++ COMPILER=clang
+  - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
 
 arch:
   packages:
