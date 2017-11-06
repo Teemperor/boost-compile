@@ -21,12 +21,8 @@ arch:
     - llvm-libs
     - llvm
     - valgrind
-  - env:
+  env:
     - MODULES=On
-    - CXX_COMPILER=clang++-5.0
-    - COMPILER=clang-5.0
-  - env:
-    - MODULES=Off
     - CXX_COMPILER=clang++-5.0
     - COMPILER=clang-5.0
   script:
