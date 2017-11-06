@@ -23,6 +23,8 @@ arch:
     - clang-tools-extra
     - llvm-libs
     - llvm
+    - python
+    - python3
   script:
     - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
 
