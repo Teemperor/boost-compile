@@ -7,7 +7,6 @@ branches:
 language: c++
 
 compiler:
-  - gcc
   - clang
 
 notifications:
@@ -20,7 +19,6 @@ arch:
     - clang-tools-extra
     - llvm-libs
     - llvm
-    - valgrind
   env:
     - MODULES=On
     - CXX_COMPILER=clang++-5.0
