@@ -2324,18 +2324,26 @@ module boost_graph_pending_random_wrapper {
     module "pending__detail__property" { header "pending/detail/property.hpp" export * }
     module "pending__disjoint_sets" { header "pending/disjoint_sets.hpp" export * }
     module "pending__fenced_priority_queue" { header "pending/fenced_priority_queue.hpp" export * }
-    module "pending__fibonacci_heap" { header "pending/fibonacci_heap.hpp" export * }
-    module "pending__indirect_cmp" { header "pending/indirect_cmp.hpp" export * }
     module "pending__integer_log2" { header "pending/integer_log2.hpp" export * }
     module "pending__is_heap" { header "pending/is_heap.hpp" export * }
     module "pending__iterator_adaptors" { header "pending/iterator_adaptors.hpp" export * }
     module "pending__lowest_bit" { header "pending/lowest_bit.hpp" export * }
-    module "pending__mutable_queue" { header "pending/mutable_queue.hpp" export * }
     module "pending__property" { header "pending/property.hpp" export * }
     module "pending__property_serialize" { header "pending/property_serialize.hpp" export * }
     module "pending__queue" { header "pending/queue.hpp" export * }
-    module "pending__relaxed_heap" { header "pending/relaxed_heap.hpp" export * }
     module "pending__stringtok" { header "pending/stringtok.hpp" export * }
+  /*
+  All these modules caused this "declaration of 'if_'.." error, so removed them from modulemap
+/home/travis/build/Teemperor/boost-compile/inc/boost/property_map/property_map.hpp:60:17: error:
+      declaration of 'if_' must be imported from module 'boost_mpl.mpl__bind'
+      before it is required
+    boost::mpl::if_<is_property_map<PA>,
+                ^
+  */
+    // module "pending__relaxed_heap" { header "pending/relaxed_heap.hpp" export * }
+    // module "pending__mutable_queue" { header "pending/mutable_queue.hpp" export * }
+    // module "pending__fibonacci_heap" { header "pending/fibonacci_heap.hpp" export * }
+    // module "pending__indirect_cmp" { header "pending/indirect_cmp.hpp" export * }
   }
   module boost_graph {
     module "graph__adjacency_iterator" { header "graph/adjacency_iterator.hpp" export * }
@@ -2442,10 +2450,18 @@ module boost_graph_pending_random_wrapper {
     module "graph__planar_face_traversal" { header "graph/planar_face_traversal.hpp" export * }
     module "graph__plod_generator" { header "graph/plod_generator.hpp" export * }
     module "graph__prim_minimum_spanning_tree" { header "graph/prim_minimum_spanning_tree.hpp" export * }
-    module "graph__properties" { header "graph/properties.hpp" export * }
+  /*
+  All these modules caused this "declaration of 'if_'.." error, so removed them from modulemap
+/home/travis/build/Teemperor/boost-compile/inc/boost/property_map/property_map.hpp:60:17: error:
+      declaration of 'if_' must be imported from module 'boost_mpl.mpl__bind'
+      before it is required
+    boost::mpl::if_<is_property_map<PA>,
+                ^
+  */
+    // module "graph__properties" { header "graph/properties.hpp" export * }
+    // module "graph__property_maps__constant_property_map" { header "graph/property_maps/constant_property_map.hpp" export * }
+    // module "graph__property_maps__null_property_map" { header "graph/property_maps/null_property_map.hpp" export * }
     module "graph__property_iter_range" { header "graph/property_iter_range.hpp" export * }
-    module "graph__property_maps__constant_property_map" { header "graph/property_maps/constant_property_map.hpp" export * }
-    module "graph__property_maps__null_property_map" { header "graph/property_maps/null_property_map.hpp" export * }
     module "graph__push_relabel_max_flow" { header "graph/push_relabel_max_flow.hpp" export * }
     module "graph__random" { header "graph/random.hpp" export * }
     module "graph__random_layout" { header "graph/random_layout.hpp" export * }
@@ -4969,19 +4985,32 @@ module boost_progress {
   module "progress" { header "progress.hpp" export * }
 }
 module boost_property_map {
-  module "property_map__compose_property_map" { header "property_map/compose_property_map.hpp" export * }
-  module "property_map__dynamic_property_map" { header "property_map/dynamic_property_map.hpp" export * }
-  module "property_map__function_property_map" { header "property_map/function_property_map.hpp" export * }
-  module "property_map__parallel__caching_property_map" { header "property_map/parallel/caching_property_map.hpp" export * }
-  module "property_map__parallel__global_index_map" { header "property_map/parallel/global_index_map.hpp" export * }
-  module "property_map__parallel__local_property_map" { header "property_map/parallel/local_property_map.hpp" export * }
   module "property_map__parallel__process_group" { header "property_map/parallel/process_group.hpp" export * }
   module "property_map__parallel__simple_trigger" { header "property_map/parallel/simple_trigger.hpp" export * }
-  module "property_map__property_map" { header "property_map/property_map.hpp" export * }
-  module "property_map__property_map_iterator" { header "property_map/property_map_iterator.hpp" export * }
-  module "property_map__shared_array_property_map" { header "property_map/shared_array_property_map.hpp" export * }
-  module "property_map__transform_value_property_map" { header "property_map/transform_value_property_map.hpp" export * }
-  module "property_map__vector_property_map" { header "property_map/vector_property_map.hpp" export * }
+  /*
+  All these modules caused this "declaration of 'if_'.." error, so removed them from modulemap
+In file included from <module-includes>:1:
+In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/property_map/compose_property_map.hpp:13:
+/home/travis/build/Teemperor/boost-compile/inc/boost/property_map/property_map.hpp:60:17: error:
+      declaration of 'if_' must be imported from module 'boost_mpl.mpl__bind'
+      before it is required
+    boost::mpl::if_<is_property_map<PA>,
+                ^
+/home/travis/build/Teemperor/boost-compile/inc/boost/mpl/aux_/preprocessed/gcc/bind.hpp:469:58: note:
+      previous declaration is here
+template< typename T1, typename T2, typename T3 > struct if_;
+  */
+  // module "property_map__compose_property_map" { header "property_map/compose_property_map.hpp" export * }
+  // module "property_map__dynamic_property_map" { header "property_map/dynamic_property_map.hpp" export * }
+  // module "property_map__function_property_map" { header "property_map/function_property_map.hpp" export * }
+  // module "property_map__parallel__caching_property_map" { header "property_map/parallel/caching_property_map.hpp" export * }
+  // module "property_map__parallel__global_index_map" { header "property_map/parallel/global_index_map.hpp" export * }
+  // module "property_map__parallel__local_property_map" { header "property_map/parallel/local_property_map.hpp" export * }
+  // module "property_map__property_map" { header "property_map/property_map.hpp" export * }
+  // module "property_map__property_map_iterator" { header "property_map/property_map_iterator.hpp" export * }
+  // module "property_map__shared_array_property_map" { header "property_map/shared_array_property_map.hpp" export * }
+  // module "property_map__transform_value_property_map" { header "property_map/transform_value_property_map.hpp" export * }
+  // module "property_map__vector_property_map" { header "property_map/vector_property_map.hpp" export * }
 }
 module boost_property_tree {
   module "property_tree__detail__file_parser_error" { header "property_tree/detail/file_parser_error.hpp" export * }
