@@ -4969,7 +4969,19 @@ module boost_progress {
   module "progress" { header "progress.hpp" export * }
 }
 module boost_property_map {
-  module "property_map__compose_property_map" { header "property_map/compose_property_map.hpp" export * }
+  /*
+In file included from <module-includes>:1:
+In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/property_map/compose_property_map.hpp:13:
+/home/travis/build/Teemperor/boost-compile/inc/boost/property_map/property_map.hpp:60:17: error:
+      declaration of 'if_' must be imported from module 'boost_mpl.mpl__bind'
+      before it is required
+    boost::mpl::if_<is_property_map<PA>,
+                ^
+/home/travis/build/Teemperor/boost-compile/inc/boost/mpl/aux_/preprocessed/gcc/bind.hpp:469:58: note:
+      previous declaration is here
+template< typename T1, typename T2, typename T3 > struct if_;
+  */
+  // module "property_map__compose_property_map" { header "property_map/compose_property_map.hpp" export * }
   module "property_map__dynamic_property_map" { header "property_map/dynamic_property_map.hpp" export * }
   module "property_map__function_property_map" { header "property_map/function_property_map.hpp" export * }
   module "property_map__parallel__caching_property_map" { header "property_map/parallel/caching_property_map.hpp" export * }
