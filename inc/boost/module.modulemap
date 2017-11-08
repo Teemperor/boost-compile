@@ -6095,7 +6095,7 @@ module boost_date_time {
     module "phoenix__version" { header "phoenix/version.hpp" export * }
   }
   module boost_spirit {
-    module "spirit__home__classic__actor__assign_actor" { header "spirit/home/classic/actor/assign_actor.hpp" export * }
+    /*module "spirit__home__classic__actor__assign_actor" { header "spirit/home/classic/actor/assign_actor.hpp" export * }
     module "spirit__home__classic__actor__assign_key_actor" { header "spirit/home/classic/actor/assign_key_actor.hpp" export * }
     module "spirit__home__classic__actor__clear_actor" { header "spirit/home/classic/actor/clear_actor.hpp" export * }
     module "spirit__home__classic__actor__decrement_actor" { header "spirit/home/classic/actor/decrement_actor.hpp" export * }
@@ -6208,6 +6208,7 @@ module boost_date_time {
     module "spirit__home__classic__tree__parse_tree_utils" { header "spirit/home/classic/tree/parse_tree_utils.hpp" export * }
     module "spirit__home__classic__tree__typeof" { header "spirit/home/classic/tree/typeof.hpp" export * }
     module "spirit__home__classic__utility__chset" { header "spirit/home/classic/utility/chset.hpp" export * }
+    */
     // Doesn't work to have this as a module:
     /*
     In file included from <module-includes>:956:
@@ -6226,7 +6227,7 @@ class chset: public char_parser<chset<CharT> > {
       ^
 */
     // module "spirit__home__classic__utility__chset_operators" { header "spirit/home/classic/utility/chset_operators.hpp" export * }
-    module "spirit__home__classic__utility__confix_fwd" { header "spirit/home/classic/utility/confix_fwd.hpp" export * }
+    /*module "spirit__home__classic__utility__confix_fwd" { header "spirit/home/classic/utility/confix_fwd.hpp" export * }
     module "spirit__home__classic__utility__confix" { header "spirit/home/classic/utility/confix.hpp" export * }
     module "spirit__home__classic__utility__distinct" { header "spirit/home/classic/utility/distinct.hpp" export * }
     module "spirit__home__classic__utility__escape_char_fwd" { header "spirit/home/classic/utility/escape_char_fwd.hpp" export * }
@@ -6241,6 +6242,7 @@ class chset: public char_parser<chset<CharT> > {
     module "spirit__home__classic__utility__rule_parser" { header "spirit/home/classic/utility/rule_parser.hpp" export * }
     module "spirit__home__classic__utility__typeof" { header "spirit/home/classic/utility/typeof.hpp" export * }
     module "spirit__home__classic__version" { header "spirit/home/classic/version.hpp" export * }
+    */
     module "spirit__home__karma__action__action" { header "spirit/home/karma/action/action.hpp" export * }
     module "spirit__home__karma__action" { header "spirit/home/karma/action.hpp" export * }
     module "spirit__home__karma__auto__auto" { header "spirit/home/karma/auto/auto.hpp" export * }
