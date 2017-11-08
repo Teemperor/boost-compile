@@ -116,7 +116,7 @@
 #include <boost/swap.hpp>
 #include <boost/thread.hpp>
 #include <boost/throw_exception.hpp>
-#include <boost/timer.hpp>
+#include <boost/timer/timer.hpp>
 #include <boost/token_functions.hpp>
 #include <boost/token_iterator.hpp>
 #include <boost/tokenizer.hpp>
