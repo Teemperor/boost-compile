@@ -4973,7 +4973,7 @@ module boost_process {
   module "process__detail__handler_base" { header "process/detail/handler_base.hpp" export * }
   module "process__detail__handler" { header "process/detail/handler.hpp" export * }
   module "process__detail__on_exit" { header "process/detail/on_exit.hpp" export * }
-  module "process__detail__posix__asio_fwd" { header "process/detail/posix/asio_fwd.hpp" export * }
+  //module "process__detail__posix__asio_fwd" { header "process/detail/posix/asio_fwd.hpp" export * }
   module "process__detail__posix__async_handler" { header "process/detail/posix/async_handler.hpp" export * }
   module "process__detail__posix__child_handle" { header "process/detail/posix/child_handle.hpp" export * }
   module "process__detail__posix__cmd" { header "process/detail/posix/cmd.hpp" export * }
