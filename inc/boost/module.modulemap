@@ -4966,6 +4966,7 @@ module boost_preprocessor {
   module "preprocessor__wstringize" { header "preprocessor/wstringize.hpp" export * }
 } */
 module boost_process {
+  module process { header "process.hpp" export * }
   module "process__detail__async_handler" { header "process/detail/async_handler.hpp" export * }
   module "process__detail__child_decl" { header "process/detail/child_decl.hpp" export * }
   module "process__detail__config" { header "process/detail/config.hpp" export * }
