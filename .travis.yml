@@ -15,7 +15,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
-          packages: ['clang-5.0', 'g++-6']
+          packages: ['clang-5.0', 'g++-7']
       env:
         - MODULES=On
         - CXX_COMPILER=clang++-5.0
@@ -27,7 +27,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
-          packages: ['clang-5.0', 'g++-6']
+          packages: ['clang-5.0', 'g++-7']
       env:
         - MODULES=Off
         - CXX_COMPILER=clang++-5.0
