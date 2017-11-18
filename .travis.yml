@@ -36,9 +36,6 @@ matrix:
         - CXX_COMPILER=clang++-5.0
         - COMPILER=clang-5.0
 
-install:
-  - pip install -r requirements.txt
-
 script:
   - pytest
   - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
