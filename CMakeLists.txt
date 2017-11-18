@@ -40,7 +40,10 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 include_directories(inc)
 
-find_package(PythonLibs REQUIRED)
+find_package(PythonLibs 3.6 REQUIRED)
+message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
+message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
+message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
 include_directories(${PYTHON_INCLUDE_DIRS})
 
 add_library(cms-test OBJECT cms.cpp)
