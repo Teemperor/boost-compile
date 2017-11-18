@@ -1,4 +1,4 @@
-language: cpp
+language: cpp, python
 
 notifications:
   email: false
@@ -6,6 +6,9 @@ notifications:
 branches:
   only:
     - master
+
+python:
+  - 3.6    
 
 matrix:
   include:
