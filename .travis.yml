@@ -7,27 +7,22 @@ branches:
   only:
     - master
 
-python:
-  - "3.6"
-
 matrix:
   include:
     - os: linux
-      dist: trusty
+      dist: artful
       compiler: clang
-      python:
-        - "3.6"
       addons:
         apt:
-          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0', 'deadsnakes']
-          packages: ['clang-5.0', 'g++-7', 'python3.6']
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
+          packages: ['clang-5.0', 'g++-7']
       env:
         - MODULES=On
         - CXX_COMPILER=clang++-5.0
         - COMPILER=clang-5.0
 
     - os: linux
-      dist: trusty
+      dist: artful
       compiler: clang
       addons:
         apt:
