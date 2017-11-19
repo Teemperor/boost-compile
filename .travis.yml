@@ -16,22 +16,37 @@ matrix:
       sudo: false
       python: '3.3'
       env:
-        matrix:
-          - MODULES=print CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
-          - MODULES=Off CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+        - MODULES=Off CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
           packages: ['clang-5.0', 'g++-7']
       script:
         - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
-
     - os: linux
       sudo: required
       env:
-        matrix:
-          - MODULES=print CXX_COMPILER=clang++ COMPILER=clang
-          - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
+        - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
+      script:
+        - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+      before_install:
+        - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
+    - os: linux
+      dist: trusty
+      sudo: false
+      python: '3.3'
+      env:
+        - MODULES=print CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
+          packages: ['clang-5.0', 'g++-7']
+      script:
+        - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+    - os: linux
+      sudo: required
+      env:
+        - MODULES=print CXX_COMPILER=clang++ COMPILER=clang
       script:
         - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
       before_install:
