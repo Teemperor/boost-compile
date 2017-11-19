@@ -6272,6 +6272,7 @@ module boost_date_time {
     module "spirit__home__classic__actor__decrement_actor" { header "spirit/home/classic/actor/decrement_actor.hpp" export * }
     module "spirit__home__classic__actor__erase_actor" { header "spirit/home/classic/actor/erase_actor.hpp" export * }
     module "spirit__home__classic__actor" { header "spirit/home/classic/actor.hpp" export * }
+    module "spirit__home__classic" { header "spirit/home/classic.hpp" export * }
     module "spirit__home__classic__actor__increment_actor" { header "spirit/home/classic/actor/increment_actor.hpp" export * }
     module "spirit__home__classic__actor__insert_at_actor" { header "spirit/home/classic/actor/insert_at_actor.hpp" export * }
     module "spirit__home__classic__actor__insert_key_actor" { header "spirit/home/classic/actor/insert_key_actor.hpp" export * }
