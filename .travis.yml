@@ -16,15 +16,12 @@ env:
     - MODULES=Off 
     - MODULES=print
 
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: false
-      python: '3.3'
-      addons:
-        apt:
-          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
-          packages: ['clang-5.0', 'g++-7']
-      script:
-        - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+dist: trusty
+sudo: false
+python: '3.3'
+addons:
+  apt:
+    sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
+    packages: ['clang-5.0', 'g++-7']
+script:
+  - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
