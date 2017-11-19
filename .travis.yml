@@ -7,8 +7,6 @@ branches:
   only:
     - master
 
-sudo: required
-
 env:
   - MODULES=On CXX_COMPILER=clang++ COMPILER=clang
   - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
@@ -19,23 +17,30 @@ matrix:
   include:
     - os: linux
       dist: trusty
+      sudo: false
       python: '3.3'
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
           packages: ['clang-5.0', 'g++-7']
+      script:
+        - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
 
     - os: linux
-	  arch:
-	    packages:
-		  - cmake
-	  	  - clang
-		  - clang-tools-extra
-		  - llvm-libs
-		  - llvm
-		  - python
-		  - python3
+      sudo: required
+      script:
+        - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+      before_install:
+        - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
 
-script:
-  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
-  - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+arch:
+  packages:
+    - cmake
+    - clang
+    - clang-tools-extra
+    - llvm-libs
+    - llvm
+    - python
+    - python3
+  script:
+    - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
