@@ -1,4 +1,4 @@
-language: cpp, python
+language: cpp
 
 notifications:
   email: false
