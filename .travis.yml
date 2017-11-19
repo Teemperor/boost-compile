@@ -11,7 +11,8 @@ compiler: clang
 
 env:
   global:
-    - CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+    - CXX_COMPILER=clang++-5.0
+    - COMPILER=clang-5.0
   matrix:
     - MODULES=Off 
     - MODULES=print
