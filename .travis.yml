@@ -10,29 +10,46 @@ branches:
 matrix:
   include:
     - os: linux
-      dist: artful
+      dist: trusty
+      python: '3.6'
+      sudo: false
       compiler: clang
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
           packages: ['clang-5.0', 'g++-7']
       env:
-        - MODULES=On
+        - MODULES=print
         - CXX_COMPILER=clang++-5.0
         - COMPILER=clang-5.0
 
     - os: linux
-      dist: artful
+      dist: trusty
       compiler: clang
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
           packages: ['clang-5.0', 'g++-7']
       env:
-        - MODULES=Off
+        - MODULES=print
         - CXX_COMPILER=clang++-5.0
         - COMPILER=clang-5.0
 
+    - os: linux
+	  env:
+	    - MODULES=On CXX_COMPILER=clang++ COMPILER=clang
+	    - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
+      compiler: clang
+	  arch:
+	    packages:
+		  - cmake
+	  	  - clang
+		  - clang-tools-extra
+		  - llvm-libs
+		  - llvm
+		  - python
+		  - python3
+
 script:
-  - pytest
   - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
+  - "curl -s https://raw.githubusercontent.com/mikkeloscar/arch-travis/master/arch-travis.sh | bash"
