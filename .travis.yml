@@ -16,8 +16,9 @@ matrix:
       sudo: false
       python: '3.3'
       env:
-        - MODULES=print CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
-        - MODULES=Off CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+        matrix:
+          - MODULES=print CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+          - MODULES=Off CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
@@ -28,8 +29,9 @@ matrix:
     - os: linux
       sudo: required
       env:
-        - MODULES=print CXX_COMPILER=clang++ COMPILER=clang
-        - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
+        matrix:
+          - MODULES=print CXX_COMPILER=clang++ COMPILER=clang
+          - MODULES=Off CXX_COMPILER=clang++ COMPILER=clang
       script:
         - ./scripts/run_travis.sh $COMPILER $CXX_COMPILER $MODULES
       before_install:
