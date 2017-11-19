@@ -10,15 +10,11 @@ branches:
 compiler: clang
 
 env:
-  global:
-    - CXX_COMPILER=clang++-5.0
-    - COMPILER=clang-5.0
-  matrix:
-    - MODULES=Off 
-    - MODULES=print
+  - MODULES=Off CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
+  - MODULES=print CXX_COMPILER=clang++-5.0 COMPILER=clang-5.0
 
 dist: trusty
-sudo: false
+sudo: enable
 python: '3.3'
 addons:
   apt:
