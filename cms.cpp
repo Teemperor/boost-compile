@@ -1,3 +1,5 @@
+#include <boost/process.hpp>
+
 // list of includes taken from CMS source
 #include <boost/algorithm/string/case_conv.hpp>
 #include <boost/algorithm/string/classification.hpp>
