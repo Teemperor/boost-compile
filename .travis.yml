@@ -15,10 +15,12 @@ matrix:
     - os: linux
       dist: trusty
       compiler: clang
+      python:
+        - "3.6"
       addons:
         apt:
-          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0']
-          packages: ['clang-5.0', 'g++-7']
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-trusty-5.0', 'deadsnakes']
+          packages: ['clang-5.0', 'g++-7', 'python3.6']
       env:
         - MODULES=On
         - CXX_COMPILER=clang++-5.0
