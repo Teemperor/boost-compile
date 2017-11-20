@@ -8,6 +8,12 @@ if(use_modules MATCHES print)
   set(use_modules On)
 endif()
 
+message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
+message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
+message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
+find_package(PythonLibs REQUIRED)
+include_directories(${PYTHON_INCLUDE_DIRS})
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND use_modules)
@@ -39,12 +45,6 @@ endif()
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 include_directories(inc)
-
-message(STATUS "PYTHON_LIBRARIES = ${PYTHON_LIBRARIES}")
-message(STATUS "PYTHON_EXECUTABLE = ${PYTHON_EXECUTABLE}")
-message(STATUS "PYTHON_INCLUDE_DIRS = ${PYTHON_INCLUDE_DIRS}")
-find_package(PythonLibs REQUIRED)
-include_directories(${PYTHON_INCLUDE_DIRS})
 
 add_library(cms-test OBJECT cms.cpp)
 add_library(boost-test OBJECT compile.cpp)
