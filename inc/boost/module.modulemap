@@ -4729,6 +4729,7 @@ module boost_pool {
 }
 /*
 module boost_preprocessor {
+  module "preprocessor__iteration__detail__iter__forward1.hpp" { header "preprocessor/iteration/detail/iter/forward1.hpp" export * }
   module "preprocessor__repetition__enum_binary_params.hpp" { header "preprocessor/repetition/enum_binary_params.hpp" export * }
   module "preprocessor__repetition__enum_params.hpp" { header "preprocessor/repetition/enum_params.hpp" export * }
   module "preprocessor__iteration__iterate.hpp" { header "preprocessor/iteration/iterate.hpp" export * }
