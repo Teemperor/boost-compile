@@ -7489,6 +7489,7 @@ namespace boost { namespace spirit { namespace detail
     module "serialization__wrapper" { header "serialization/wrapper.hpp" export * }
   }
   module boost_archive {
+    module "archive__impl__basic_binary_iarchive.ipp" { header "archive/impl/basic_binary_iarchive.ipp" export * }
     module "archive__archive_exception" { header "archive/archive_exception.hpp" export * }
     module "archive__basic_archive" { header "archive/basic_archive.hpp" export * }
     module "archive__basic_binary_iprimitive" { header "archive/basic_binary_iprimitive.hpp" export * }
