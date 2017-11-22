@@ -908,6 +908,7 @@ module boost_fiber {
   module "fiber__unbuffered_channel" { header "fiber/unbuffered_channel.hpp" export * }
 }
 module boost_filesystem {
+  module "filesystem__convenience.hpp" { header "filesystem/convenience.hpp" export * }
   module "filesystem__config" { header "filesystem/config.hpp" export * }
   module "filesystem__detail__utf8_codecvt_facet" { header "filesystem/detail/utf8_codecvt_facet.hpp" export * }
   module "filesystem__exception" { header "filesystem/exception.hpp" export * }
