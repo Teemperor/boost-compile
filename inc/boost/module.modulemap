@@ -4729,6 +4729,7 @@ module boost_pool {
 }
 /*
 module boost_preprocessor {
+  module "preprocessor__repetition__enum_params.hpp" { header "preprocessor/repetition/enum_params.hpp" export * }
   module "preprocessor__iteration__iterate.hpp" { header "preprocessor/iteration/iterate.hpp" export * }
   module "preprocessor__arithmetic__add" { header "preprocessor/arithmetic/add.hpp" export * }
   module "preprocessor__arithmetic__dec" { header "preprocessor/arithmetic/dec.hpp" export * }
