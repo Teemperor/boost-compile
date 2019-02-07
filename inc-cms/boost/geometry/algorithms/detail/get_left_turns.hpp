@@ -2,12 +2,19 @@
 
 // Copyright (c) 2012-2014 Barend Gehrels, Amsterdam, the Netherlands.
 
+// This file was modified by Oracle on 2017.
+// Modifications copyright (c) 2017, Oracle and/or its affiliates.
+
+// Contributed and/or modified by Adam Wulkiewicz, on behalf of Oracle
+
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
 #ifndef BOOST_GEOMETRY_ALGORITHMS_DETAIL_GET_LEFT_TURNS_HPP
 #define BOOST_GEOMETRY_ALGORITHMS_DETAIL_GET_LEFT_TURNS_HPP
+
+#include <boost/geometry/core/assert.hpp>
 
 #include <boost/geometry/arithmetic/arithmetic.hpp>
 #include <boost/geometry/algorithms/detail/overlay/segment_identifier.hpp>
@@ -58,17 +65,14 @@ inline int squared_length(Vector const& vector)
 }
 
 
-template <typename Point>
+template <typename Point, typename SideStrategy>
 struct angle_less
 {
     typedef Point vector_type;
-    typedef typename strategy::side::services::default_strategy
-    <
-        typename cs_tag<Point>::type
-    >::type side_strategy_type;
 
-    angle_less(Point const& origin)
+    angle_less(Point const& origin, SideStrategy const& strategy)
         : m_origin(origin)
+        , m_strategy(strategy)
     {}
 
     template <typename Angle>
@@ -87,8 +91,7 @@ struct angle_less
             return quadrant_p < quadrant_q;
         }
         // Same quadrant, check if p is located left of q
-        int const side = side_strategy_type::apply(m_origin, q.point,
-                    p.point);
+        int const side = m_strategy.apply(m_origin, q.point, p.point);
         if (side != 0)
         {
             return side == 1;
@@ -112,19 +115,17 @@ struct angle_less
 
 private:
     Point m_origin;
+    SideStrategy m_strategy;
 };
 
-template <typename Point>
+template <typename Point, typename SideStrategy>
 struct angle_equal_to
 {
     typedef Point vector_type;
-    typedef typename strategy::side::services::default_strategy
-    <
-        typename cs_tag<Point>::type
-    >::type side_strategy_type;
-
-    inline angle_equal_to(Point const& origin)
+    
+    inline angle_equal_to(Point const& origin, SideStrategy const& strategy)
         : m_origin(origin)
+        , m_strategy(strategy)
     {}
 
     template <typename Angle>
@@ -141,21 +142,21 @@ struct angle_equal_to
             return false;
         }
         // Same quadrant, check if p/q are collinear
-        int const side = side_strategy_type::apply(m_origin, q.point,
-                    p.point);
+        int const side = m_strategy.apply(m_origin, q.point, p.point);
         return side == 0;
     }
 
 private:
     Point m_origin;
+    SideStrategy m_strategy;
 };
 
 template <typename AngleCollection, typename Turns>
 inline void get_left_turns(AngleCollection const& sorted_angles,
         Turns& turns)
 {
-    std::set<int> good_incoming;
-    std::set<int> good_outgoing;
+    std::set<std::size_t> good_incoming;
+    std::set<std::size_t> good_outgoing;
 
     for (typename boost::range_iterator<AngleCollection const>::type it =
         sorted_angles.begin(); it != sorted_angles.end(); ++it)
@@ -191,13 +192,14 @@ inline void get_left_turns(AngleCollection const& sorted_angles,
 
 
 //! Returns the number of clusters
-template <typename Point, typename AngleCollection>
-inline std::size_t assign_cluster_indices(AngleCollection& sorted, Point const& origin)
+template <typename Point, typename AngleCollection, typename SideStrategy>
+inline std::size_t assign_cluster_indices(AngleCollection& sorted, Point const& origin,
+                                          SideStrategy const& strategy)
 {
     // Assign same cluster_index for all turns in same direction
-    BOOST_ASSERT(boost::size(sorted) >= 4u);
+    BOOST_GEOMETRY_ASSERT(boost::size(sorted) >= 4u);
 
-    angle_equal_to<Point> comparator(origin);
+    angle_equal_to<Point, SideStrategy> comparator(origin, strategy);
     typename boost::range_iterator<AngleCollection>::type it = sorted.begin();
 
     std::size_t cluster_index = 0;
@@ -218,7 +220,7 @@ inline std::size_t assign_cluster_indices(AngleCollection& sorted, Point const& 
 template <typename AngleCollection>
 inline void block_turns(AngleCollection& sorted, std::size_t cluster_size)
 {
-    BOOST_ASSERT(boost::size(sorted) >= 4u && cluster_size > 0);
+    BOOST_GEOMETRY_ASSERT(boost::size(sorted) >= 4u && cluster_size > 0);
 
     std::vector<std::pair<bool, bool> > directions;
     for (std::size_t i = 0; i < cluster_size; i++)
@@ -242,14 +244,14 @@ inline void block_turns(AngleCollection& sorted, std::size_t cluster_size)
     for (typename boost::range_iterator<AngleCollection>::type it = sorted.begin();
         it != sorted.end(); ++it)
     {
-        int cluster_index = it->cluster_index;
-        int previous_index = cluster_index - 1;
+        signed_size_type cluster_index = static_cast<signed_size_type>(it->cluster_index);
+        signed_size_type previous_index = cluster_index - 1;
         if (previous_index < 0)
         {
             previous_index = cluster_size - 1;
         }
-        int next_index = cluster_index + 1;
-        if (next_index >= static_cast<int>(cluster_size))
+        signed_size_type next_index = cluster_index + 1;
+        if (next_index >= static_cast<signed_size_type>(cluster_size))
         {
             next_index = 0;
         }

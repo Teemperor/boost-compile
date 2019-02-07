@@ -14,7 +14,7 @@
 // $Date$
 // $Revision$
 
-#if defined(__GNUC__) && !defined(__EDG_VERSION__)
+#if defined(__GNUC__) && !defined(__EDG_VERSION__) || defined(__INTEL_COMPILER)
 #   define BOOST_MPL_CFG_GCC ((__GNUC__ << 8) | __GNUC_MINOR__)
 #else
 #   define BOOST_MPL_CFG_GCC 0

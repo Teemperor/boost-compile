@@ -9,6 +9,9 @@
 #ifndef BOOST_GEOMETRY_STRATEGIES_AGNOSTIC_BUFFER_DISTANCE_SYMMETRIC_HPP
 #define BOOST_GEOMETRY_STRATEGIES_AGNOSTIC_BUFFER_DISTANCE_SYMMETRIC_HPP
 
+
+#include <boost/core/ignore_unused.hpp>
+
 #include <boost/geometry/strategies/buffer.hpp>
 #include <boost/geometry/util/math.hpp>
 
@@ -65,7 +68,7 @@ public :
         return negative() ? -1 : 1;
     }
 
-    //! Returns true if distance is negative
+    //! Returns true if distance is negative (aka deflate)
     inline bool negative() const
     {
         return m_distance < 0;
@@ -76,6 +79,8 @@ public :
     inline NumericType max_distance(JoinStrategy const& join_strategy,
             EndStrategy const& end_strategy) const
     {
+        boost::ignore_unused(join_strategy, end_strategy);
+
         NumericType const dist = geometry::math::abs(m_distance);
         return (std::max)(join_strategy.max_distance(dist),
                           end_strategy.max_distance(dist));

@@ -2,6 +2,11 @@
 
 // Copyright (c) 2012-2014 Barend Gehrels, Amsterdam, the Netherlands.
 
+// This file was modified by Oracle on 2017.
+// Modifications copyright (c) 2017, Oracle and/or its affiliates.
+
+// Contributed and/or modified by Adam Wulkiewicz, on behalf of Oracle
+
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
@@ -12,6 +17,7 @@
 #include <algorithm>
 #include <boost/range.hpp>
 
+#include <boost/geometry/core/assert.hpp>
 #include <boost/geometry/core/coordinate_type.hpp>
 #include <boost/geometry/core/point_type.hpp>
 
@@ -36,7 +42,7 @@ struct angle_info
     typedef Point point_type;
 
     segment_identifier seg_id;
-    int turn_index;
+    std::size_t turn_index;
     int operation_index;
     std::size_t cluster_index;
     Point intersection_point;
@@ -57,11 +63,17 @@ class occupation_info
 public :
     typedef std::vector<AngleInfo> collection_type;
 
+    std::size_t count;
+
+    inline occupation_info()
+        : count(0)
+    {}
+
     template <typename RobustPoint>
     inline void add(RobustPoint const& incoming_point,
                     RobustPoint const& outgoing_point,
                     RobustPoint const& intersection_point,
-                    int turn_index, int operation_index,
+                    std::size_t turn_index, int operation_index,
                     segment_identifier const& seg_id)
     {
         geometry::equal_to<RobustPoint> comparator;
@@ -92,12 +104,18 @@ public :
         }
     }
 
-    template <typename RobustPoint, typename Turns>
-    inline void get_left_turns(RobustPoint const& origin, Turns& turns)
+    template <typename RobustPoint, typename Turns, typename SideStrategy>
+    inline void get_left_turns(RobustPoint const& origin, Turns& turns,
+                               SideStrategy const& strategy)
     {
+        typedef detail::left_turns::angle_less
+            <
+                typename AngleInfo::point_type,
+                SideStrategy
+            > angle_less;
+
         // Sort on angle
-        std::sort(m_angles.begin(), m_angles.end(),
-                detail::left_turns::angle_less<typename AngleInfo::point_type>(origin));
+        std::sort(m_angles.begin(), m_angles.end(), angle_less(origin, strategy));
 
         // Group same-angled elements
         std::size_t cluster_size = detail::left_turns::assign_cluster_indices(m_angles, origin);
@@ -119,11 +137,19 @@ private :
 };
 
 template<typename Pieces>
-inline void move_index(Pieces const& pieces, int& index, int& piece_index, int direction)
+inline void move_index(Pieces const& pieces, signed_size_type& index, signed_size_type& piece_index, int direction)
 {
-    BOOST_ASSERT(direction == 1 || direction == -1);
-    BOOST_ASSERT(piece_index >= 0 && piece_index < static_cast<int>(boost::size(pieces)) );
-    BOOST_ASSERT(index >= 0 && index < static_cast<int>(boost::size(pieces[piece_index].robust_ring)));
+    BOOST_GEOMETRY_ASSERT(direction == 1 || direction == -1);
+    BOOST_GEOMETRY_ASSERT(
+        piece_index >= 0
+        && piece_index < static_cast<signed_size_type>(boost::size(pieces)) );
+    BOOST_GEOMETRY_ASSERT(
+        index >= 0
+        && index < static_cast<signed_size_type>(boost::size(pieces[piece_index].robust_ring)));
+
+    // NOTE: both index and piece_index must be in valid range
+    // this means that then they could be of type std::size_t
+    // if the code below was refactored
 
     index += direction;
     if (direction == -1 && index < 0)
@@ -136,10 +162,10 @@ inline void move_index(Pieces const& pieces, int& index, int& piece_index, int d
         index = boost::size(pieces[piece_index].robust_ring) - 1;
     }
     if (direction == 1
-        && index >= static_cast<int>(boost::size(pieces[piece_index].robust_ring)))
+        && index >= static_cast<signed_size_type>(boost::size(pieces[piece_index].robust_ring)))
     {
         piece_index++;
-        if (piece_index >= static_cast<int>(boost::size(pieces)))
+        if (piece_index >= static_cast<signed_size_type>(boost::size(pieces)))
         {
             piece_index = 0;
         }
@@ -170,8 +196,8 @@ inline void add_incoming_and_outgoing_angles(
     RobustPoint direction_points[2];
     for (int i = 0; i < 2; i++)
     {
-        int index = turn.operations[operation_index].index_in_robust_ring;
-        int piece_index = turn.operations[operation_index].piece_index;
+        signed_size_type index = turn.operations[operation_index].index_in_robust_ring;
+        signed_size_type piece_index = turn.operations[operation_index].piece_index;
         while(comparator(pieces[piece_index].robust_ring[index], intersection_point))
         {
             move_index(pieces, index, piece_index, i == 0 ? -1 : 1);

@@ -11,25 +11,31 @@
 #ifndef BOOST_CONTAINER_DETAIL_MULTIALLOCATION_CHAIN_HPP
 #define BOOST_CONTAINER_DETAIL_MULTIALLOCATION_CHAIN_HPP
 
-#if defined(_MSC_VER)
+#ifndef BOOST_CONFIG_HPP
+#  include <boost/config.hpp>
+#endif
+
+#if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
 #endif
 
 #include <boost/container/detail/config_begin.hpp>
 #include <boost/container/detail/workaround.hpp>
-
+// container
 #include <boost/container/container_fwd.hpp>
-#include <boost/container/detail/utilities.hpp>
-#include <boost/container/detail/type_traits.hpp>
+// container/detail
+#include <boost/move/detail/to_raw_pointer.hpp>
 #include <boost/container/detail/transform_iterator.hpp>
+#include <boost/container/detail/type_traits.hpp>
+// intrusive
 #include <boost/intrusive/slist.hpp>
 #include <boost/intrusive/pointer_traits.hpp>
-#include <boost/type_traits/make_unsigned.hpp>
+// move
 #include <boost/move/utility_core.hpp>
 
 namespace boost {
 namespace container {
-namespace container_detail {
+namespace dtl {
 
 template<class VoidPointer>
 class basic_multiallocation_chain
@@ -47,7 +53,7 @@ class basic_multiallocation_chain
    typedef bi::slist< node
                     , bi::linear<true>
                     , bi::cache_last<true>
-                    , bi::size_type<typename boost::make_unsigned<difference_type>::type>
+                    , bi::size_type<typename boost::container::dtl::make_unsigned<difference_type>::type>
                     > slist_impl_t;
    slist_impl_t slist_impl_;
 
@@ -57,7 +63,7 @@ class basic_multiallocation_chain
       pointer_traits<node_ptr>                              node_ptr_traits;
 
    static node & to_node(const VoidPointer &p)
-   {  return *static_cast<node*>(static_cast<void*>(container_detail::to_raw_pointer(p)));  }
+   {  return *static_cast<node*>(static_cast<void*>(boost::movelib::to_raw_pointer(p)));  }
 
    static VoidPointer from_node(node &n)
    {  return node_ptr_traits::pointer_to(n);  }
@@ -146,7 +152,7 @@ class basic_multiallocation_chain
          char_ptr prev_elem = elem;
          elem += unit_bytes;
          for(size_type i = 0; i != num_units-1; ++i, elem += unit_bytes){
-            ::new (container_detail::to_raw_pointer(prev_elem)) void_pointer(elem);
+            ::new (boost::movelib::to_raw_pointer(prev_elem)) void_pointer(elem);
             prev_elem = elem;
          }
          slist_impl_.incorporate_after(after_this, to_node_ptr(b), to_node_ptr(prev_elem), num_units);
@@ -176,7 +182,7 @@ class basic_multiallocation_chain
 template<class T>
 struct cast_functor
 {
-   typedef typename container_detail::add_reference<T>::type result_type;
+   typedef typename dtl::add_reference<T>::type result_type;
    template<class U>
    result_type operator()(U &ptr) const
    {  return *static_cast<T*>(static_cast<void*>(&ptr));  }
@@ -205,7 +211,7 @@ class transform_multiallocation_chain
    public:
    typedef transform_iterator
       < typename MultiallocationChain::iterator
-      , container_detail::cast_functor <T> >             iterator;
+      , dtl::cast_functor <T> >             iterator;
    typedef typename MultiallocationChain::size_type      size_type;
 
    transform_multiallocation_chain()
@@ -283,7 +289,7 @@ class transform_multiallocation_chain
 
 }}}
 
-// namespace container_detail {
+// namespace dtl {
 // namespace container {
 // namespace boost {
 

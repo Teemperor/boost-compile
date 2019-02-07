@@ -1,4 +1,4 @@
-/* Copyright 2003-2014 Joaquin M Lopez Munoz.
+/* Copyright 2003-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -15,7 +15,9 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
+#include <boost/bind.hpp>
 #include <boost/call_traits.hpp>
+#include <boost/core/addressof.hpp>
 #include <boost/detail/no_exceptions_support.hpp>
 #include <boost/detail/workaround.hpp>
 #include <boost/foreach_fwd.hpp>
@@ -43,13 +45,13 @@
 #include <functional>
 #include <stdexcept> 
 #include <utility>
+#include <memory>
 
 #if !defined(BOOST_NO_CXX11_HDR_INITIALIZER_LIST)
 #include<initializer_list>
 #endif
 
 #if !defined(BOOST_MULTI_INDEX_DISABLE_SERIALIZATION)
-#include <boost/bind.hpp>
 #include <boost/multi_index/detail/rnd_index_loader.hpp>
 #endif
 
@@ -113,8 +115,13 @@ public:
   typedef typename node_type::value_type           value_type;
   typedef tuples::null_type                        ctor_args;
   typedef typename super::final_allocator_type     allocator_type;
+#ifdef BOOST_NO_CXX11_ALLOCATOR
   typedef typename allocator_type::reference       reference;
   typedef typename allocator_type::const_reference const_reference;
+#else
+  typedef value_type&                              reference;
+  typedef const value_type&                        const_reference;
+#endif
 
 #if defined(BOOST_MULTI_INDEX_ENABLE_SAFE_MODE)
   typedef safe_mode::safe_iterator<
@@ -128,8 +135,14 @@ public:
 
   typedef std::size_t                              size_type;      
   typedef std::ptrdiff_t                           difference_type;
+#ifdef BOOST_NO_CXX11_ALLOCATOR
   typedef typename allocator_type::pointer         pointer;
   typedef typename allocator_type::const_pointer   const_pointer;
+#else
+  typedef std::allocator_traits<allocator_type>    allocator_traits;
+  typedef typename allocator_traits::pointer       pointer;
+  typedef typename allocator_traits::const_pointer const_pointer;
+#endif
   typedef typename
     boost::reverse_iterator<iterator>              reverse_iterator;
   typedef typename
@@ -249,12 +262,12 @@ public:
 
   iterator iterator_to(const value_type& x)
   {
-    return make_iterator(node_from_value<node_type>(&x));
+    return make_iterator(node_from_value<node_type>(boost::addressof(x)));
   }
 
   const_iterator iterator_to(const value_type& x)const
   {
-    return make_iterator(node_from_value<node_type>(&x));
+    return make_iterator(node_from_value<node_type>(boost::addressof(x)));
   }
 
   /* capacity */
@@ -583,7 +596,8 @@ public:
     difference_type n=
       end()-make_iterator(
         random_access_index_remove<node_type>(
-          ptrs,std::bind2nd(std::equal_to<value_type>(),value)));
+          ptrs,
+          ::boost::bind(std::equal_to<value_type>(),::boost::arg<1>(),value)));
     while(n--)pop_back();
   }
 
@@ -876,6 +890,11 @@ BOOST_MULTI_INDEX_PROTECTED_IF_MEMBER_TEMPLATE_FRIENDS:
     return super::modify_rollback_(x);
   }
 
+  bool check_rollback_(node_type* x)const
+  {
+    return super::check_rollback_(x);
+  }
+
 #if !defined(BOOST_MULTI_INDEX_DISABLE_SERIALIZATION)
   /* serialization */
 
@@ -1155,7 +1174,7 @@ struct random_access
 template<typename SuperMeta,typename TagList>
 inline boost::mpl::true_* boost_foreach_is_noncopyable(
   boost::multi_index::detail::random_access_index<SuperMeta,TagList>*&,
-  boost::foreach::tag)
+  boost_foreach_argument_dependent_lookup_hack)
 {
   return 0;
 }

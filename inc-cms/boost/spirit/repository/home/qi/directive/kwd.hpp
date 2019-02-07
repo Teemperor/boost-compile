@@ -16,13 +16,13 @@
 #include <boost/spirit/home/qi/parser.hpp>
 #include <boost/spirit/home/qi/auxiliary/lazy.hpp>
 #include <boost/spirit/home/qi/operator/kleene.hpp>
+#include <boost/spirit/home/qi/string/lit.hpp>
 #include <boost/spirit/home/support/container.hpp>
 #include <boost/spirit/home/qi/detail/attributes.hpp>
 #include <boost/spirit/home/qi/detail/fail_function.hpp>
 #include <boost/spirit/home/support/info.hpp>
 #include <boost/spirit/repository/home/support/kwd.hpp>
 #include <boost/fusion/include/at.hpp>
-#include <boost/foreach.hpp>
 #include <vector>
 
 namespace boost { namespace spirit
@@ -148,11 +148,17 @@ namespace boost { namespace spirit
 
 namespace boost { namespace spirit { namespace repository { namespace qi
 {
+#ifndef BOOST_SPIRIT_NO_PREDEFINED_TERMINALS
     using repository::kwd;
     using repository::ikwd;
     using repository::dkwd;
     using repository::idkwd;
     using spirit::inf;
+#endif
+    using repository::kwd_type;
+    using repository::ikwd_type;
+    using repository::dkwd_type;
+    using repository::idkwd_type;
     using spirit::inf_type;
 
 template <typename T>
@@ -160,7 +166,7 @@ template <typename T>
     {
         kwd_pass_iterator() {}
         bool flag_init() const { return true; }
-        bool register_successful_parse(bool &flag,T &i) const {
+        bool register_successful_parse(bool &flag,T &/*i*/) const {
             flag=true;
             return true;
         }
@@ -255,7 +261,7 @@ template <typename T>
     };
 
     // This class enables the transportation of parameters needed to call
-    // the occurence constraint checker from higher level calls
+    // the occurrence constraint checker from higher level calls
     // It also serves to select the correct parse function call
     // of the keyword parser. The implementation changes depending if it is
     // called form a keyword parsing loop or not.
@@ -650,7 +656,7 @@ namespace boost { namespace spirit { namespace qi
                         );
         }
         template <typename Terminal>
-        result_type create_kwd(Terminal const &term, Subject const & subject, Modifiers const& modifiers, boost::mpl::true_ ) const
+        result_type create_kwd(Terminal const &term, Subject const & subject, Modifiers const& /*modifiers*/, boost::mpl::true_ ) const
         {
            return create_kwd_string(term,subject,no_case());
         }
@@ -721,7 +727,7 @@ namespace boost { namespace spirit { namespace qi
                         );
         }
         template <typename Terminal>
-        result_type create_kwd(Terminal const &term, Subject const & subject, Modifiers const& modifiers, boost::mpl::true_ ) const
+        result_type create_kwd(Terminal const &term, Subject const & subject, Modifiers const& /*modifiers*/, boost::mpl::true_ ) const
         {
            return create_kwd_string(term,subject,no_case());
         }
@@ -896,7 +902,7 @@ namespace boost { namespace spirit { namespace qi
 
         template <typename Terminal>
         result_type operator()(
-            Terminal const& term, Subject const& subject, Modifiers const& modifiers) const
+            Terminal const& term, Subject const& subject, Modifiers const& /*modifiers*/) const
         {
             typename spirit::detail::get_encoding<Modifiers,
                 spirit::char_encoding::standard>::type encoding;
@@ -919,7 +925,7 @@ namespace boost { namespace spirit { namespace qi
 
         template <typename Terminal>
         result_type operator()(
-            Terminal const& term, Subject const& subject, Modifiers const& modifiers) const
+            Terminal const& term, Subject const& subject, Modifiers const& /*modifiers*/) const
         {
             typename spirit::detail::get_encoding<Modifiers,
                 spirit::char_encoding::standard>::type encoding;

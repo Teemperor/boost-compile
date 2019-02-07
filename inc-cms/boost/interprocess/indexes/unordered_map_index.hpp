@@ -11,18 +11,24 @@
 #ifndef BOOST_INTERPROCESS_UNORDERED_MAP_INDEX_HPP
 #define BOOST_INTERPROCESS_UNORDERED_MAP_INDEX_HPP
 
-#if defined(_MSC_VER)
+#ifndef BOOST_CONFIG_HPP
+#  include <boost/config.hpp>
+#endif
+#
+#if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
 #endif
 
 #include <boost/interprocess/detail/config_begin.hpp>
 #include <boost/interprocess/detail/workaround.hpp>
 
-#include <functional>
-#include <utility>
+#include <boost/intrusive/detail/minimal_pair_header.hpp>
 #include <boost/unordered_map.hpp>
 #include <boost/interprocess/detail/utilities.hpp>
 #include <boost/interprocess/allocators/private_adaptive_pool.hpp>
+
+#include <boost/intrusive/detail/minimal_pair_header.hpp>         //std::pair
+#include <boost/intrusive/detail/minimal_less_equal_header.hpp>   //std::less
 
 //!\file
 //!Describes index adaptor of boost::unordered_map container, to use it
@@ -47,8 +53,10 @@ struct unordered_map_index_aux
                typename MapConfig::
                   segment_manager_base>      allocator_type;
     struct hasher
-      : std::unary_function<key_type, std::size_t>
     {
+        typedef key_type argument_type;
+        typedef std::size_t result_type;
+
         std::size_t operator()(const key_type &val) const
         {
             typedef typename key_type::char_type    char_type;

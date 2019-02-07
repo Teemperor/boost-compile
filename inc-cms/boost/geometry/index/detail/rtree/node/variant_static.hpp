@@ -2,7 +2,7 @@
 //
 // R-tree nodes based on Boost.Variant, storing static-size containers
 //
-// Copyright (c) 2011-2014 Adam Wulkiewicz, Lodz, Poland.
+// Copyright (c) 2011-2018 Adam Wulkiewicz, Lodz, Poland.
 //
 // Use, modification and distribution is subject to the Boost Software License,
 // Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
@@ -79,37 +79,38 @@ struct visitor<Value, Parameters, Box, Allocators, node_variant_static_tag, IsVi
 // allocators
 
 template <typename Allocator, typename Value, typename Parameters, typename Box>
-struct allocators<Allocator, Value, Parameters, Box, node_variant_static_tag>
-    : public Allocator::template rebind<
-        typename node<
-            Value, Parameters, Box,
-            allocators<Allocator, Value, Parameters, Box, node_variant_static_tag>,
-            node_variant_static_tag
+class allocators<Allocator, Value, Parameters, Box, node_variant_static_tag>
+    : public detail::rtree::node_alloc
+        <
+            Allocator, Value, Parameters, Box, node_variant_static_tag
         >::type
-    >::other
 {
-    typedef typename Allocator::template rebind<
-        Value
-    >::other value_allocator_type;
+    typedef detail::rtree::node_alloc
+        <
+            Allocator, Value, Parameters, Box, node_variant_static_tag
+        > node_alloc;
+
+public:
+    typedef typename node_alloc::type node_allocator_type;
+    typedef typename node_alloc::traits::pointer node_pointer;
+
+private:
+    typedef typename boost::container::allocator_traits
+        <
+            node_allocator_type
+        >::template rebind_alloc<Value> value_allocator_type;
+    typedef boost::container::allocator_traits<value_allocator_type> value_allocator_traits;
 
 public:
     typedef Allocator allocator_type;
 
     typedef Value value_type;
-    typedef value_type & reference;
-    typedef const value_type & const_reference;
-    typedef typename value_allocator_type::size_type size_type;
-    typedef typename value_allocator_type::difference_type difference_type;
-    typedef typename value_allocator_type::pointer pointer;
-    typedef typename value_allocator_type::const_pointer const_pointer;
-
-    typedef typename Allocator::template rebind<
-        typename node<Value, Parameters, Box, allocators, node_variant_static_tag>::type
-    >::other::pointer node_pointer;
-
-    typedef typename Allocator::template rebind<
-        typename node<Value, Parameters, Box, allocators, node_variant_static_tag>::type
-    >::other node_allocator_type;
+    typedef typename value_allocator_traits::reference reference;
+    typedef typename value_allocator_traits::const_reference const_reference;
+    typedef typename value_allocator_traits::size_type size_type;
+    typedef typename value_allocator_traits::difference_type difference_type;
+    typedef typename value_allocator_traits::pointer pointer;
+    typedef typename value_allocator_traits::const_pointer const_pointer;
 
     inline allocators()
         : node_allocator_type()
@@ -151,40 +152,6 @@ public:
 
     node_allocator_type & node_allocator() { return *this; }
     node_allocator_type const& node_allocator() const { return *this; }
-};
-
-// create_node
-
-template <typename Allocators, typename Value, typename Parameters, typename Box>
-struct create_node<
-    Allocators,
-    variant_internal_node<Value, Parameters, Box, Allocators, node_variant_static_tag>
->
-{
-    static inline typename Allocators::node_pointer
-    apply(Allocators & allocators)
-    {
-        return create_variant_node<
-            typename Allocators::node_pointer,
-            variant_internal_node<Value, Parameters, Box, Allocators, node_variant_static_tag>
-        >::apply(allocators.node_allocator());
-    }
-};
-
-template <typename Allocators, typename Value, typename Parameters, typename Box>
-struct create_node<
-    Allocators,
-    variant_leaf<Value, Parameters, Box, Allocators, node_variant_static_tag>
->
-{
-    static inline typename Allocators::node_pointer
-    apply(Allocators & allocators)
-    {
-        return create_variant_node<
-            typename Allocators::node_pointer,
-            variant_leaf<Value, Parameters, Box, Allocators, node_variant_static_tag>
-        >::apply(allocators.node_allocator());
-    }
 };
 
 }} // namespace detail::rtree
