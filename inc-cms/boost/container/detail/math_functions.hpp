@@ -16,7 +16,11 @@
 #ifndef BOOST_CONTAINER_DETAIL_MATH_FUNCTIONS_HPP
 #define BOOST_CONTAINER_DETAIL_MATH_FUNCTIONS_HPP
 
-#if defined(_MSC_VER)
+#ifndef BOOST_CONFIG_HPP
+#  include <boost/config.hpp>
+#endif
+
+#if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
 #endif
 
@@ -28,7 +32,7 @@
 
 namespace boost {
 namespace container {
-namespace container_detail {
+namespace dtl {
 
 // Greatest common divisor and least common multiple
 
@@ -110,7 +114,7 @@ inline std::size_t floor_log2 (std::size_t x)
    return log2;
 }
 
-} // namespace container_detail
+} // namespace dtl
 } // namespace container
 } // namespace boost
 

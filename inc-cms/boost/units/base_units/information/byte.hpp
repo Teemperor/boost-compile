@@ -7,8 +7,8 @@
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef BOOST_UNIT_SYSTEMS_INFORMATION_BYTE_HPP
-#define BOOST_UNIT_SYSTEMS_INFORMATION_BYTE_HPP
+#ifndef BOOST_UNITS_BASE_UNITS_INFORMATION_BYTE_HPP_INCLUDED
+#define BOOST_UNITS_BASE_UNITS_INFORMATION_BYTE_HPP_INCLUDED
 
 #include <boost/units/scaled_base_unit.hpp>
 #include <boost/units/static_rational.hpp>
@@ -26,11 +26,11 @@ typedef scaled_base_unit<boost::units::information::bit_base_unit, scale<2, stat
 
 template<>
 struct base_unit_info<information::byte_base_unit> {
-    static const char* name()   { return("byte"); }
-    static const char* symbol() { return("B"); }
+    static BOOST_CONSTEXPR const char* name()   { return("byte"); }
+    static BOOST_CONSTEXPR const char* symbol() { return("B"); }
 };
 
 } // namespace units
 } // namespace boost
 
-#endif // BOOST_UNIT_SYSTEMS_INFORMATION_BYTE_HPP
+#endif // BOOST_UNITS_BASE_UNITS_INFORMATION_BYTE_HPP_INCLUDED

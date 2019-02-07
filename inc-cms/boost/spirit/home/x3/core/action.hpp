@@ -4,12 +4,8 @@
     Distributed under the Boost Software License, Version 1.0. (See accompanying
     file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 =============================================================================*/
-#if !defined(SPIRIT_ACTION_JANUARY_07_2007_1128AM)
-#define SPIRIT_ACTION_JANUARY_07_2007_1128AM
-
-#if defined(_MSC_VER)
-#pragma once
-#endif
+#if !defined(BOOST_SPIRIT_X3_ACTION_JANUARY_07_2007_1128AM)
+#define BOOST_SPIRIT_X3_ACTION_JANUARY_07_2007_1128AM
 
 #include <boost/spirit/home/x3/support/context.hpp>
 #include <boost/spirit/home/x3/support/traits/attribute_of.hpp>
@@ -113,7 +109,7 @@ namespace boost { namespace spirit { namespace x3
     inline action<typename extension::as_parser<P>::value_type, Action>
     operator/(P const& p, Action f)
     {
-        return {as_parser(p), f};
+        return { as_parser(p), f };
     }
 }}}
 

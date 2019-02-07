@@ -1,6 +1,6 @@
 // Boost.Geometry (aka GGL, Generic Geometry Library)
 
-// Copyright (c) 2014, Oracle and/or its affiliates.
+// Copyright (c) 2014-2015, Oracle and/or its affiliates.
 
 // Contributed and/or modified by Menelaos Karavelas, on behalf of Oracle
 
@@ -72,6 +72,16 @@ template <typename Geometry, typename Tag = typename tag<Geometry>::type>
 struct is_acceptable_turn
 {};
 
+template <typename Ring>
+struct is_acceptable_turn<Ring, ring_tag>
+{
+    template <typename Turn>
+    static inline bool apply(Turn const&)
+    {
+        return false;
+    }
+};
+
 template <typename Polygon>
 class is_acceptable_turn<Polygon, polygon_tag>
 {
@@ -128,10 +138,17 @@ public:
         }
 
         operation_type const op = acceptable_operation<MultiPolygon>::value;
+        if ( base::check_turn(turn, method_touch_interior, op)
+          || base::check_turn(turn, method_touch, op))
+        {
+            return true;
+        }
 
-        return base::check_turn(turn, method_touch_interior, op)
-            || base::check_turn(turn, method_touch, op)
-            ;
+        // Turn is acceptable only in case of a touch(interior) and both lines
+        // (polygons) do not cross
+        return (turn.method == method_touch
+                || turn.method == method_touch_interior)
+                && turn.touch_only;
     }
 };   
 

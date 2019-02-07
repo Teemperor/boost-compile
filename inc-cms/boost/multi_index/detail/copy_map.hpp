@@ -1,4 +1,4 @@
-/* Copyright 2003-2013 Joaquin M Lopez Munoz.
+/* Copyright 2003-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -15,11 +15,14 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
+#include <boost/core/addressof.hpp>
 #include <boost/detail/no_exceptions_support.hpp>
 #include <boost/multi_index/detail/auto_space.hpp>
+#include <boost/multi_index/detail/raw_ptr.hpp>
 #include <boost/noncopyable.hpp>
 #include <cstddef>
 #include <functional>
+#include <memory>
 
 namespace boost{
 
@@ -69,22 +72,23 @@ public:
   {
     if(!released){
       for(std::size_t i=0;i<n;++i){
-        boost::detail::allocator::destroy(&(spc.data()+i)->second->value());
+        boost::detail::allocator::destroy(
+          boost::addressof((spc.data()+i)->second->value()));
         deallocate((spc.data()+i)->second);
       }
     }
   }
 
-  const_iterator begin()const{return &*spc.data();}
-  const_iterator end()const{return &*(spc.data()+n);}
+  const_iterator begin()const{return raw_ptr<const_iterator>(spc.data());}
+  const_iterator end()const{return raw_ptr<const_iterator>(spc.data()+n);}
 
   void clone(Node* node)
   {
     (spc.data()+n)->first=node;
-    (spc.data()+n)->second=&*al_.allocate(1);
+    (spc.data()+n)->second=raw_ptr<Node*>(allocate());
     BOOST_TRY{
       boost::detail::allocator::construct(
-        &(spc.data()+n)->second->value(),node->value());
+        boost::addressof((spc.data()+n)->second->value()),node->value());
     }
     BOOST_CATCH(...){
       deallocate((spc.data()+n)->second);
@@ -93,7 +97,11 @@ public:
     BOOST_CATCH_END
     ++n;
 
-    if(n==size_)std::sort(&*spc.data(),&*spc.data()+size_);
+    if(n==size_){
+      std::sort(
+        raw_ptr<copy_map_entry<Node>*>(spc.data()),
+        raw_ptr<copy_map_entry<Node>*>(spc.data())+size_);
+    }
   }
 
   Node* find(Node* node)const
@@ -112,7 +120,12 @@ private:
   typedef typename boost::detail::allocator::rebind_to<
     Allocator,Node
   >::type                                               allocator_type;
+#ifdef BOOST_NO_CXX11_ALLOCATOR
   typedef typename allocator_type::pointer              allocator_pointer;
+#else
+  typedef std::allocator_traits<allocator_type>         allocator_traits;
+  typedef typename allocator_traits::pointer            allocator_pointer;
+#endif
 
   allocator_type                                        al_;
   std::size_t                                           size_;
@@ -122,9 +135,22 @@ private:
   Node*                                                 header_cpy_;
   bool                                                  released;
 
+  allocator_pointer allocate()
+  {
+#ifdef BOOST_NO_CXX11_ALLOCATOR
+    return al_.allocate(1);
+#else
+    return allocator_traits::allocate(al_,1);
+#endif
+  }
+
   void deallocate(Node* node)
   {
+#ifdef BOOST_NO_CXX11_ALLOCATOR
     al_.deallocate(static_cast<allocator_pointer>(node),1);
+#else
+    allocator_traits::deallocate(al_,static_cast<allocator_pointer>(node),1);
+#endif
   }
 };
 

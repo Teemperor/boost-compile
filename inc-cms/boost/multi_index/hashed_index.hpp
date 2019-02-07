@@ -1,4 +1,4 @@
-/* Copyright 2003-2014 Joaquin M Lopez Munoz.
+/* Copyright 2003-2018 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -16,6 +16,7 @@
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
 #include <boost/call_traits.hpp>
+#include <boost/core/addressof.hpp>
 #include <boost/detail/allocator_utilities.hpp>
 #include <boost/detail/no_exceptions_support.hpp>
 #include <boost/detail/workaround.hpp>
@@ -32,6 +33,7 @@
 #include <boost/multi_index/detail/hash_index_iterator.hpp>
 #include <boost/multi_index/detail/index_node_base.hpp>
 #include <boost/multi_index/detail/modify_key_adaptor.hpp>
+#include <boost/multi_index/detail/promotes_arg.hpp>
 #include <boost/multi_index/detail/safe_mode.hpp>
 #include <boost/multi_index/detail/scope_guard.hpp>
 #include <boost/multi_index/detail/vartempl_support.hpp>
@@ -43,6 +45,7 @@
 #include <functional>
 #include <iterator>
 #include <utility>
+#include <memory>
 
 #if !defined(BOOST_NO_CXX11_HDR_INITIALIZER_LIST)
 #include <initializer_list>
@@ -125,10 +128,18 @@ public:
   typedef tuple<std::size_t,
     key_from_value,hasher,key_equal>                 ctor_args;
   typedef typename super::final_allocator_type       allocator_type;
+#ifdef BOOST_NO_CXX11_ALLOCATOR
   typedef typename allocator_type::pointer           pointer;
   typedef typename allocator_type::const_pointer     const_pointer;
   typedef typename allocator_type::reference         reference;
   typedef typename allocator_type::const_reference   const_reference;
+#else
+  typedef std::allocator_traits<allocator_type>      allocator_traits;
+  typedef typename allocator_traits::pointer         pointer;
+  typedef typename allocator_traits::const_pointer   const_pointer;
+  typedef value_type&                                reference;
+  typedef const value_type&                          const_reference;
+#endif
   typedef std::size_t                                size_type;      
   typedef std::ptrdiff_t                             difference_type;
 
@@ -237,12 +248,12 @@ public:
 
   iterator iterator_to(const value_type& x)
   {
-    return make_iterator(node_from_value<node_type>(&x));
+    return make_iterator(node_from_value<node_type>(boost::addressof(x)));
   }
 
   const_iterator iterator_to(const value_type& x)const
   {
-    return make_iterator(node_from_value<node_type>(&x));
+    return make_iterator(node_from_value<node_type>(boost::addressof(x)));
   }
 
   /* modifiers */
@@ -459,6 +470,11 @@ public:
    * type as iterator.
    */
 
+  /* Implementation note: When CompatibleKey is consistently promoted to
+   * KeyFromValue::result_type for equality comparison, the promotion is made
+   * once in advance to increase efficiency.
+   */
+
   template<typename CompatibleKey>
   iterator find(const CompatibleKey& k)const
   {
@@ -472,14 +488,8 @@ public:
     const CompatibleKey& k,
     const CompatibleHash& hash,const CompatiblePred& eq)const
   {
-    std::size_t buc=buckets.position(hash(k));
-    for(node_impl_pointer x=buckets.at(buc)->prior();
-        x!=node_impl_pointer(0);x=node_alg::next_to_inspect(x)){
-      if(eq(k,key(node_type::from_impl(x)->value()))){
-        return make_iterator(node_type::from_impl(x));
-      }
-    }
-    return end();
+    return find(
+      k,hash,eq,promotes_1st_arg<CompatiblePred,CompatibleKey,key_type>());
   }
 
   template<typename CompatibleKey>
@@ -495,20 +505,8 @@ public:
     const CompatibleKey& k,
     const CompatibleHash& hash,const CompatiblePred& eq)const
   {
-    std::size_t buc=buckets.position(hash(k));
-    for(node_impl_pointer x=buckets.at(buc)->prior();
-        x!=node_impl_pointer(0);x=node_alg::next_to_inspect(x)){
-      if(eq(k,key(node_type::from_impl(x)->value()))){
-        size_type         res=0;
-        node_impl_pointer y=end_of_range(x);
-        do{
-          ++res;
-          x=node_alg::after(x);
-        }while(x!=y);
-        return res;
-      }
-    }
-    return 0;
+    return count(
+      k,hash,eq,promotes_1st_arg<CompatiblePred,CompatibleKey,key_type>());
   }
 
   template<typename CompatibleKey>
@@ -524,16 +522,8 @@ public:
     const CompatibleKey& k,
     const CompatibleHash& hash,const CompatiblePred& eq)const
   {
-    std::size_t buc=buckets.position(hash(k));
-    for(node_impl_pointer x=buckets.at(buc)->prior();
-        x!=node_impl_pointer(0);x=node_alg::next_to_inspect(x)){
-      if(eq(k,key(node_type::from_impl(x)->value()))){
-        return std::pair<iterator,iterator>(
-          make_iterator(node_type::from_impl(x)),
-          make_iterator(node_type::from_impl(end_of_range(x))));
-      }
-    }
-    return std::pair<iterator,iterator>(end(),end());
+    return equal_range(
+      k,hash,eq,promotes_1st_arg<CompatiblePred,CompatibleKey,key_type>());
   }
 
   /* bucket interface */
@@ -583,12 +573,14 @@ public:
 
   local_iterator local_iterator_to(const value_type& x)
   {
-    return make_local_iterator(node_from_value<node_type>(&x));
+    return make_local_iterator(
+      node_from_value<node_type>(boost::addressof(x)));
   }
 
   const_local_iterator local_iterator_to(const value_type& x)const
   {
-    return make_local_iterator(node_from_value<node_type>(&x));
+    return make_local_iterator(
+      node_from_value<node_type>(boost::addressof(x)));
   }
 
   /* hash policy */
@@ -604,7 +596,7 @@ public:
     if(size()<=max_load&&n<=bucket_count())return;
 
     size_type bc =(std::numeric_limits<size_type>::max)();
-    float     fbc=static_cast<float>(1+size()/mlf);
+    float     fbc=1.0f+static_cast<float>(size())/mlf;
     if(bc>fbc){
       bc=static_cast<size_type>(fbc);
       if(bc<n)bc=n;
@@ -614,7 +606,7 @@ public:
 
   void reserve(size_type n)
   {
-    rehash(static_cast<size_type>(std::ceil(static_cast<double>(n)/mlf)));
+    rehash(static_cast<size_type>(std::ceil(static_cast<float>(n)/mlf)));
   }
 
 BOOST_MULTI_INDEX_PROTECTED_IF_MEMBER_TEMPLATE_FRIENDS:
@@ -1029,6 +1021,12 @@ BOOST_MULTI_INDEX_PROTECTED_IF_MEMBER_TEMPLATE_FRIENDS:
     BOOST_CATCH_END
   }
 
+  bool check_rollback_(node_type* x)const
+  {
+    std::size_t buc=find_bucket(x->value());
+    return in_place(x->impl(),key(x->value()),buc)&&super::check_rollback_(x);
+  }
+
   /* comparison */
 
 #if !defined(BOOST_NO_MEMBER_TEMPLATE_FRIENDS)
@@ -1291,7 +1289,7 @@ private:
 
   void calculate_max_load()
   {
-    float fml=static_cast<float>(mlf*bucket_count());
+    float fml=mlf*static_cast<float>(bucket_count());
     max_load=(std::numeric_limits<size_type>::max)();
     if(max_load>fml)max_load=static_cast<size_type>(fml);
   }
@@ -1300,7 +1298,7 @@ private:
   {
     if(n>max_load){
       size_type bc =(std::numeric_limits<size_type>::max)();
-      float     fbc=static_cast<float>(1+static_cast<double>(n)/mlf);
+      float     fbc=1.0f+static_cast<float>(n)/mlf;
       if(bc>fbc)bc =static_cast<size_type>(fbc);
       unchecked_rehash(bc);
     }
@@ -1527,6 +1525,95 @@ private:
     return make_iterator(p.first);
   }
 
+  template<
+    typename CompatibleHash,typename CompatiblePred
+  >
+  iterator find(
+    const key_type& k,
+    const CompatibleHash& hash,const CompatiblePred& eq,mpl::true_)const
+  {
+    return find(k,hash,eq,mpl::false_());
+  }
+
+  template<
+    typename CompatibleKey,typename CompatibleHash,typename CompatiblePred
+  >
+  iterator find(
+    const CompatibleKey& k,
+    const CompatibleHash& hash,const CompatiblePred& eq,mpl::false_)const
+  {
+    std::size_t buc=buckets.position(hash(k));
+    for(node_impl_pointer x=buckets.at(buc)->prior();
+        x!=node_impl_pointer(0);x=node_alg::next_to_inspect(x)){
+      if(eq(k,key(node_type::from_impl(x)->value()))){
+        return make_iterator(node_type::from_impl(x));
+      }
+    }
+    return end();
+  }
+
+  template<
+    typename CompatibleHash,typename CompatiblePred
+  >
+  size_type count(
+    const key_type& k,
+    const CompatibleHash& hash,const CompatiblePred& eq,mpl::true_)const
+  {
+    return count(k,hash,eq,mpl::false_());
+  }
+
+  template<
+    typename CompatibleKey,typename CompatibleHash,typename CompatiblePred
+  >
+  size_type count(
+    const CompatibleKey& k,
+    const CompatibleHash& hash,const CompatiblePred& eq,mpl::false_)const
+  {
+    std::size_t buc=buckets.position(hash(k));
+    for(node_impl_pointer x=buckets.at(buc)->prior();
+        x!=node_impl_pointer(0);x=node_alg::next_to_inspect(x)){
+      if(eq(k,key(node_type::from_impl(x)->value()))){
+        size_type         res=0;
+        node_impl_pointer y=end_of_range(x);
+        do{
+          ++res;
+          x=node_alg::after(x);
+        }while(x!=y);
+        return res;
+      }
+    }
+    return 0;
+  }
+
+  template<
+    typename CompatibleHash,typename CompatiblePred
+  >
+  std::pair<iterator,iterator> equal_range(
+    const key_type& k,
+    const CompatibleHash& hash,const CompatiblePred& eq,mpl::true_)const
+  {
+    return equal_range(k,hash,eq,mpl::false_());
+  }
+
+  template<
+    typename CompatibleKey,typename CompatibleHash,typename CompatiblePred
+  >
+  std::pair<iterator,iterator> equal_range(
+    const CompatibleKey& k,
+    const CompatibleHash& hash,const CompatiblePred& eq,mpl::false_)const
+  {
+    std::size_t buc=buckets.position(hash(k));
+    for(node_impl_pointer x=buckets.at(buc)->prior();
+        x!=node_impl_pointer(0);x=node_alg::next_to_inspect(x)){
+      if(eq(k,key(node_type::from_impl(x)->value()))){
+        return std::pair<iterator,iterator>(
+          make_iterator(node_type::from_impl(x)),
+          make_iterator(node_type::from_impl(end_of_range(x))));
+      }
+    }
+    return std::pair<iterator,iterator>(end(),end());
+  }
+
   key_from_value               key;
   hasher                       hash_;
   key_equal                    eq_;
@@ -1645,7 +1732,7 @@ template<
 inline boost::mpl::true_* boost_foreach_is_noncopyable(
   boost::multi_index::detail::hashed_index<
     KeyFromValue,Hash,Pred,SuperMeta,TagList,Category>*&,
-  boost::foreach::tag)
+  boost_foreach_argument_dependent_lookup_hack)
 {
   return 0;
 }

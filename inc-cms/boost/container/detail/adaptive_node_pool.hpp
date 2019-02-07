@@ -11,7 +11,11 @@
 #ifndef BOOST_CONTAINER_DETAIL_ADAPTIVE_NODE_POOL_HPP
 #define BOOST_CONTAINER_DETAIL_ADAPTIVE_NODE_POOL_HPP
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1200)
+#ifndef BOOST_CONFIG_HPP
+#  include <boost/config.hpp>
+#endif
+
+#if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
 #endif
 
@@ -19,13 +23,13 @@
 #include <boost/container/detail/workaround.hpp>
 
 #include <boost/intrusive/set.hpp>
-#include <boost/aligned_storage.hpp>
-#include <boost/container/detail/alloc_lib_auto_link.hpp>
 #include <boost/container/detail/multiallocation_chain.hpp>
 #include <boost/container/detail/pool_common_alloc.hpp>
 #include <boost/container/detail/mutex.hpp>
 #include <boost/container/detail/adaptive_node_pool_impl.hpp>
 #include <boost/container/detail/multiallocation_chain.hpp>
+#include <boost/container/detail/type_traits.hpp>
+
 #include <cstddef>
 #include <cmath>
 #include <cassert>
@@ -33,12 +37,12 @@
 
 namespace boost {
 namespace container {
-namespace container_detail {
+namespace dtl {
 
 template<bool AlignOnly>
 struct select_private_adaptive_node_pool_impl
 {
-   typedef boost::container::container_detail::
+   typedef boost::container::dtl::
          private_adaptive_node_pool_impl
             < fake_segment_manager
             , unsigned(AlignOnly)*::boost::container::adaptive_pool_flag::align_only
@@ -153,7 +157,7 @@ class shared_adaptive_node_pool
    default_mutex mutex_;
 };
 
-}  //namespace container_detail {
+}  //namespace dtl {
 }  //namespace container {
 }  //namespace boost {
 

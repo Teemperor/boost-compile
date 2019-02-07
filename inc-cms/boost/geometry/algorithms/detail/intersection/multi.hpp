@@ -1,9 +1,9 @@
 // Boost.Geometry (aka GGL, Generic Geometry Library)
 
-// Copyright (c) 2007-2012 Barend Gehrels, Amsterdam, the Netherlands.
+// Copyright (c) 2007-2015 Barend Gehrels, Amsterdam, the Netherlands.
 
 // This file was modified by Oracle on 2014.
-// Modifications copyright (c) 2014, Oracle and/or its affiliates.
+// Modifications copyright (c) 2014-2015, Oracle and/or its affiliates.
 
 // Contributed and/or modified by Adam Wulkiewicz, on behalf of Oracle
 
@@ -36,8 +36,6 @@
 #include <boost/geometry/algorithms/envelope.hpp>
 #include <boost/geometry/algorithms/num_points.hpp>
 
-// TODO: remove this after moving num_point from multi directory
-#include <boost/geometry/multi/algorithms/num_points.hpp>
 
 namespace boost { namespace geometry
 {
@@ -239,7 +237,7 @@ struct intersection_insert
         OverlayType,
         Reverse1, Reverse2, ReverseOut,
         multi_linestring_tag, multi_linestring_tag, point_tag,
-        false, false, false
+        linear_tag, linear_tag, pointlike_tag
     > : detail::intersection::intersection_multi_linestring_multi_linestring_point
             <
                 GeometryOut
@@ -261,7 +259,7 @@ struct intersection_insert
         OverlayType,
         Reverse1, Reverse2, ReverseOut,
         linestring_tag, multi_linestring_tag, point_tag,
-        false, false, false
+        linear_tag, linear_tag, pointlike_tag
     > : detail::intersection::intersection_linestring_multi_linestring_point
             <
                 GeometryOut
@@ -283,7 +281,7 @@ struct intersection_insert
         OverlayType,
         Reverse1, Reverse2, ReverseOut,
         multi_linestring_tag, box_tag, linestring_tag,
-        false, true, false
+        linear_tag, areal_tag, linear_tag
     > : detail::intersection::clip_multi_linestring
             <
                 GeometryOut
@@ -305,7 +303,7 @@ struct intersection_insert
         OverlayType,
         ReverseLinestring, ReverseMultiPolygon, ReverseOut,
         linestring_tag, multi_polygon_tag, linestring_tag,
-        false, true, false
+        linear_tag, areal_tag, linear_tag
     > : detail::intersection::intersection_of_linestring_with_areal
             <
                 ReverseMultiPolygon,
@@ -331,7 +329,7 @@ struct intersection_insert
         OverlayType,
         ReversePolygon, ReverseMultiLinestring, ReverseOut,
         polygon_tag, multi_linestring_tag, linestring_tag,
-        true, false, false
+        areal_tag, linear_tag, linear_tag
     > : detail::intersection::intersection_of_areal_with_multi_linestring
             <
                 ReversePolygon,
@@ -355,7 +353,7 @@ struct intersection_insert
         OverlayType,
         ReverseMultiLinestring, ReverseRing, ReverseOut,
         multi_linestring_tag, ring_tag, linestring_tag,
-        false, true, false
+        linear_tag, areal_tag, linear_tag
     > : detail::intersection::intersection_of_multi_linestring_with_areal
             <
                 ReverseRing,
@@ -378,7 +376,7 @@ struct intersection_insert
         OverlayType,
         ReverseMultiLinestring, ReverseRing, ReverseOut,
         multi_linestring_tag, polygon_tag, linestring_tag,
-        false, true, false
+        linear_tag, areal_tag, linear_tag
     > : detail::intersection::intersection_of_multi_linestring_with_areal
             <
                 ReverseRing,
@@ -403,7 +401,7 @@ struct intersection_insert
         OverlayType,
         ReverseMultiLinestring, ReverseMultiPolygon, ReverseOut,
         multi_linestring_tag, multi_polygon_tag, linestring_tag,
-        false, true, false
+        linear_tag, areal_tag, linear_tag
     > : detail::intersection::intersection_of_multi_linestring_with_areal
             <
                 ReverseMultiPolygon,
