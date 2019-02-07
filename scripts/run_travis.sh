@@ -7,6 +7,11 @@ export CXX=$2
 
 set -e
 
+if [[ "$4" == "On" ]]; then
+  echo "Testing CMS boost"
+fi
+
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 cd ..
@@ -22,7 +27,11 @@ if [[ "$3" == "On" || "$3" == "print" ]]; then
   find . -name "boost_*.pcm" | xargs -L1 basename | rev | cut -c 5- | rev > found_pcms
   echo "Found PCMS:"
   cat found_pcms
-  python "$DIR/check_pcms.py" "$DIR/../working_pcms" found_pcms
+  if [[ "$4" == "On" ]]; then
+    python "$DIR/check_pcms.py" "$DIR/../working_pcms-cms" found_pcms
+  else
+    python "$DIR/check_pcms.py" "$DIR/../working_pcms" found_pcms
+  fi
   python "$DIR/size_check_pcms.py"
 else
   echo "Building with modules off"
