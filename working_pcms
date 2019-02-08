@@ -110,7 +110,6 @@ boost_test
 boost_timer
 boost_token_iterator
 boost_tokenizer
-boost_tr1
 boost_tti
 boost_type
 boost_type_index
