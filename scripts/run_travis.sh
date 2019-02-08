@@ -11,13 +11,18 @@ if [[ "$4" == "On" ]]; then
   echo "Testing CMS boost"
 fi
 
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$DIR"
 cd ..
 rm -rf build
 mkdir build
 cd build
+
+# Will keep travis alive by producing output
+bash "$DIR/print_status.sh" "$DIR/../build/pcm" &
+BUSY_PID=$!
+
+
 cmake -Duse_modules=$3 -Dcms=$4 ..
 if [[ "$3" == "On" || "$3" == "print" ]]; then
   echo "Building with modules on"
@@ -37,3 +42,5 @@ else
   echo "Building with modules off"
   make VERBOSE=1
 fi
+
+kill $BUSY_PID
