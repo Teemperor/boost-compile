@@ -12,6 +12,7 @@
 #include <boost/lexical_cast.hpp>
 #endif
 #include <boost/type_traits/is_convertible.hpp>
+#include <boost/type_traits/is_constructible.hpp>
 
 namespace boost{ namespace math{ 
 

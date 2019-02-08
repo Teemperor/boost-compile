@@ -146,7 +146,7 @@ module boost_asio {
   module "asio__buffers_iterator" { header "asio/buffers_iterator.hpp" export * }
   module "asio__completion_condition" { header "asio/completion_condition.hpp" export * }
   module "asio__coroutine" { header "asio/coroutine.hpp" export * }
-  module "asio__detail__addressof" { header "asio/detail/addressof.hpp" export * }
+  //module "asio__detail__addressof" { header "asio/detail/addressof.hpp" export * }
   module "asio__detail__array_fwd" { header "asio/detail/array_fwd.hpp" export * }
   module "asio__detail__array" { header "asio/detail/array.hpp" export * }
   module "asio__detail__assert" { header "asio/detail/assert.hpp" export * }
@@ -164,7 +164,7 @@ module boost_asio {
   module "asio__detail__dependent_type" { header "asio/detail/dependent_type.hpp" export * }
   module "asio__detail__dev_poll_reactor" { header "asio/detail/dev_poll_reactor.hpp" export * }
   module "asio__detail__fenced_block" { header "asio/detail/fenced_block.hpp" export * }
-  module "asio__detail__function" { header "asio/detail/function.hpp" export * }
+ // module "asio__detail__function" { header "asio/detail/function.hpp" export * }
   module "asio__detail__gcc_arm_fenced_block" { header "asio/detail/gcc_arm_fenced_block.hpp" export * }
   module "asio__detail__gcc_hppa_fenced_block" { header "asio/detail/gcc_hppa_fenced_block.hpp" export * }
   module "asio__detail__handler_alloc_helpers" { header "asio/detail/handler_alloc_helpers.hpp" export * }
@@ -177,7 +177,7 @@ module boost_asio {
   module "asio__detail__impl__epoll_reactor" { header "asio/detail/impl/epoll_reactor.hpp" export * }
   module "asio__detail__impl__kqueue_reactor" { header "asio/detail/impl/kqueue_reactor.hpp" export * }
   module "asio__detail__impl__select_reactor" { header "asio/detail/impl/select_reactor.hpp" export * }
-  module "asio__detail__impl__win_iocp_io_service" { header "asio/detail/impl/win_iocp_io_service.hpp" export * }
+  //module "asio__detail__impl__win_iocp_io_service" { header "asio/detail/impl/win_iocp_io_service.hpp" export * }
   module "asio__detail__impl__winrt_timer_scheduler" { header "asio/detail/impl/winrt_timer_scheduler.hpp" export * }
   module "asio__detail__io_control" { header "asio/detail/io_control.hpp" export * }
   module "asio__detail__keyword_tss_ptr" { header "asio/detail/keyword_tss_ptr.hpp" export * }
@@ -218,7 +218,7 @@ In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/asio.
   module "asio__detail__scoped_lock" { header "asio/detail/scoped_lock.hpp" export * }
   module "asio__detail__scoped_ptr" { header "asio/detail/scoped_ptr.hpp" export * }
   module "asio__detail__select_reactor" { header "asio/detail/select_reactor.hpp" export * }
-  module "asio__detail__shared_ptr" { header "asio/detail/shared_ptr.hpp" export * }
+  //module "asio__detail__shared_ptr" { header "asio/detail/shared_ptr.hpp" export * }
   module "asio__detail__signal_blocker" { header "asio/detail/signal_blocker.hpp" export * }
   module "asio__detail__signal_init" { header "asio/detail/signal_init.hpp" export * }
   module "asio__detail__socket_option" { header "asio/detail/socket_option.hpp" export * }
@@ -231,22 +231,22 @@ In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/asio.
   module "asio__detail__std_mutex" { header "asio/detail/std_mutex.hpp" export * }
   module "asio__detail__std_static_mutex" { header "asio/detail/std_static_mutex.hpp" export * }
   module "asio__detail__std_thread" { header "asio/detail/std_thread.hpp" export * }
-  module "asio__detail__task_io_service_thread_info" { header "asio/detail/task_io_service_thread_info.hpp" export * }
+  //module "asio__detail__task_io_service_thread_info" { header "asio/detail/task_io_service_thread_info.hpp" export * }
   module "asio__detail__thread_info_base" { header "asio/detail/thread_info_base.hpp" export * }
   module "asio__detail__throw_exception" { header "asio/detail/throw_exception.hpp" export * }
   module "asio__detail__timer_scheduler_fwd" { header "asio/detail/timer_scheduler_fwd.hpp" export * }
   module "asio__detail__tss_ptr" { header "asio/detail/tss_ptr.hpp" export * }
   module "asio__detail__type_traits" { header "asio/detail/type_traits.hpp" export * }
   module "asio__detail__variadic_templates" { header "asio/detail/variadic_templates.hpp" export * }
-  module "asio__detail__weak_ptr" { header "asio/detail/weak_ptr.hpp" export * }
-  module "asio__detail__winapi_thread" { header "asio/detail/winapi_thread.hpp" export * }
+  //module "asio__detail__weak_ptr" { header "asio/detail/weak_ptr.hpp" export * }
+  //module "asio__detail__winapi_thread" { header "asio/detail/winapi_thread.hpp" export * }
   module "asio__detail__win_event" { header "asio/detail/win_event.hpp" export * }
   module "asio__detail__win_fd_set_adapter" { header "asio/detail/win_fd_set_adapter.hpp" export * }
   module "asio__detail__win_fenced_block" { header "asio/detail/win_fenced_block.hpp" export * }
   module "asio__detail__win_iocp_handle_read_op" { header "asio/detail/win_iocp_handle_read_op.hpp" export * }
   module "asio__detail__win_iocp_handle_service" { header "asio/detail/win_iocp_handle_service.hpp" export * }
   module "asio__detail__win_iocp_handle_write_op" { header "asio/detail/win_iocp_handle_write_op.hpp" export * }
-  module "asio__detail__win_iocp_io_service" { header "asio/detail/win_iocp_io_service.hpp" export * }
+  //module "asio__detail__win_iocp_io_service" { header "asio/detail/win_iocp_io_service.hpp" export * }
   module "asio__detail__win_iocp_null_buffers_op" { header "asio/detail/win_iocp_null_buffers_op.hpp" export * }
   module "asio__detail__win_iocp_operation" { header "asio/detail/win_iocp_operation.hpp" export * }
   module "asio__detail__win_iocp_overlapped_op" { header "asio/detail/win_iocp_overlapped_op.hpp" export * }
@@ -290,14 +290,14 @@ In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/asio.
   module "asio__placeholders" { header "asio/placeholders.hpp" export * }
   module "asio__posix__descriptor_base" { header "asio/posix/descriptor_base.hpp" export * }
   module "asio__socket_base" { header "asio/socket_base.hpp" export * }
-  module "asio__ssl__basic_context" { header "asio/ssl/basic_context.hpp" export * }
+  //module "asio__ssl__basic_context" { header "asio/ssl/basic_context.hpp" export * }
   module "asio__ssl__context_base" { header "asio/ssl/context_base.hpp" export * }
-  module "asio__ssl__context_service" { header "asio/ssl/context_service.hpp" export * }
+  //module "asio__ssl__context_service" { header "asio/ssl/context_service.hpp" export * }
   module "asio__ssl__detail__openssl_types" { header "asio/ssl/detail/openssl_types.hpp" export * }
   module "asio__ssl__detail__password_callback" { header "asio/ssl/detail/password_callback.hpp" export * }
   module "asio__ssl__detail__verify_callback" { header "asio/ssl/detail/verify_callback.hpp" export * }
   module "asio__ssl__stream_base" { header "asio/ssl/stream_base.hpp" export * }
-  module "asio__ssl__stream_service" { header "asio/ssl/stream_service.hpp" export * }
+  //module "asio__ssl__stream_service" { header "asio/ssl/stream_service.hpp" export * }
   module "asio__ssl__verify_context" { header "asio/ssl/verify_context.hpp" export * }
   module "asio__ssl__verify_mode" { header "asio/ssl/verify_mode.hpp" export * }
   module "asio__streambuf" { header "asio/streambuf.hpp" export * }
@@ -748,7 +748,7 @@ module boost_context {
 module boost_convert {
   module "convert__detail__boost_parameter_ext" { header "convert/detail/boost_parameter_ext.hpp" export * }
   module "convert__detail__char" { header "convert/detail/char.hpp" export * }
-  module "convert__detail__forward" { header "convert/detail/forward.hpp" export * }
+  //module "convert__detail__forward" { header "convert/detail/forward.hpp" export * }
   module "convert__detail__has_member" { header "convert/detail/has_member.hpp" export * }
   module "convert__detail__is_callable" { header "convert/detail/is_callable.hpp" export * }
   module "convert__detail__is_fun" { header "convert/detail/is_fun.hpp" export * }
@@ -3869,8 +3869,6 @@ module boost_metaparse {
   module "metaparse__v1__impl__apply_parser" { header "metaparse/v1/impl/apply_parser.hpp" export * }
   module "metaparse__v1__impl__at_c" { header "metaparse/v1/impl/at_c.hpp" export * }
   module "metaparse__v1__impl__back_inserter" { header "metaparse/v1/impl/back_inserter.hpp" export * }
-  module "metaparse__v1__impl__concat" { header "metaparse/v1/impl/concat.hpp" export * }
-  module "metaparse__v1__impl__empty_string" { header "metaparse/v1/impl/empty_string.hpp" export * }
   module "metaparse__v1__impl__front_inserter" { header "metaparse/v1/impl/front_inserter.hpp" export * }
   module "metaparse__v1__impl__fwd__iterate_impl" { header "metaparse/v1/impl/fwd/iterate_impl.hpp" export * }
   module "metaparse__v1__impl__has_type" { header "metaparse/v1/impl/has_type.hpp" export * }
@@ -3881,16 +3879,10 @@ module boost_metaparse {
   module "metaparse__v1__impl__later_result" { header "metaparse/v1/impl/later_result.hpp" export * }
   module "metaparse__v1__impl__next_digit" { header "metaparse/v1/impl/next_digit.hpp" export * }
   module "metaparse__v1__impl__no_char" { header "metaparse/v1/impl/no_char.hpp" export * }
-  module "metaparse__v1__impl__nth_of_c" { header "metaparse/v1/impl/nth_of_c.hpp" export * }
-  module "metaparse__v1__impl__nth_of_c_impl" { header "metaparse/v1/impl/nth_of_c_impl.hpp" export * }
   module "metaparse__v1__impl__one_char_except_not_used" { header "metaparse/v1/impl/one_char_except_not_used.hpp" export * }
   module "metaparse__v1__impl__one_of_fwd_op" { header "metaparse/v1/impl/one_of_fwd_op.hpp" export * }
   module "metaparse__v1__impl__one_of" { header "metaparse/v1/impl/one_of.hpp" export * }
-  module "metaparse__v1__impl__pop_back" { header "metaparse/v1/impl/pop_back.hpp" export * }
-  module "metaparse__v1__impl__pop_front" { header "metaparse/v1/impl/pop_front.hpp" export * }
-  module "metaparse__v1__impl__push_back_c" { header "metaparse/v1/impl/push_back_c.hpp" export * }
-  module "metaparse__v1__impl__push_front_c" { header "metaparse/v1/impl/push_front_c.hpp" export * }
-  module "metaparse__v1__impl__remove_trailing_no_chars" { header "metaparse/v1/impl/remove_trailing_no_chars.hpp" export * }
+  //module "metaparse__v1__impl__remove_trailing_no_chars" { header "metaparse/v1/impl/remove_trailing_no_chars.hpp" export * }
   module "metaparse__v1__impl__returns" { header "metaparse/v1/impl/returns.hpp" export * }
   module "metaparse__v1__impl__sequence" { header "metaparse/v1/impl/sequence.hpp" export * }
   module "metaparse__v1__impl__sequence_impl" { header "metaparse/v1/impl/sequence_impl.hpp" export * }
@@ -4656,7 +4648,7 @@ module boost_parameter {
   module "parameter__aux___preprocessor__for_each" { header "parameter/aux_/preprocessor/for_each.hpp" export * }
   module "parameter__aux___result_of0" { header "parameter/aux_/result_of0.hpp" export * }
   module "parameter__aux___set" { header "parameter/aux_/set.hpp" export * }
-  module "parameter__aux___tagged_argument" { header "parameter/aux_/tagged_argument.hpp" export * }
+  //module "parameter__aux___tagged_argument" { header "parameter/aux_/tagged_argument.hpp" export * }
   module "parameter__aux___tag" { header "parameter/aux_/tag.hpp" export * }
   module "parameter__aux___template_keyword" { header "parameter/aux_/template_keyword.hpp" export * }
   module "parameter__aux___unwrap_cv_reference" { header "parameter/aux_/unwrap_cv_reference.hpp" export * }
@@ -5065,7 +5057,7 @@ module boost_ptr_container {
   module "ptr_container__detail__serialize_xml_names" { header "ptr_container/detail/serialize_xml_names.hpp" export * }
   module "ptr_container__detail__static_move_ptr" { header "ptr_container/detail/static_move_ptr.hpp" export * }
   module "ptr_container__detail__throw_exception" { header "ptr_container/detail/throw_exception.hpp" export * }
-  module "ptr_container__detail__void_ptr_iterator" { header "ptr_container/detail/void_ptr_iterator.hpp" export * }
+  //module "ptr_container__detail__void_ptr_iterator" { header "ptr_container/detail/void_ptr_iterator.hpp" export * }
   module "ptr_container__exception" { header "ptr_container/exception.hpp" export * }
   module "ptr_container__indirect_fun" { header "ptr_container/indirect_fun.hpp" export * }
   module "ptr_container__nullable" { header "ptr_container/nullable.hpp" export * }
@@ -5153,7 +5145,7 @@ module boost_python {
   module "python_manage_new_object.hpp" { header "python/manage_new_object.hpp" export * }
   module "python_module.hpp" { header "python/module.hpp" export * }
   module "python_module_init.hpp" { header "python/module_init.hpp" export * }
-  module "python_numeric.hpp" { header "python/numeric.hpp" export * }
+  //module "python_numeric.hpp" { header "python/numeric.hpp" export * }
   module "python_numpy.hpp" { header "python/numpy.hpp" export * }
   module "python_object_attributes.hpp" { header "python/object_attributes.hpp" export * }
   module "python_object_core.hpp" { header "python/object_core.hpp" export * }
@@ -5208,7 +5200,7 @@ module boost_python {
   module "python_str.hpp" { header "python/str.hpp" export * }
   module "python_tag.hpp" { header "python/tag.hpp" export * }
   module "python_to_python_converter.hpp" { header "python/to_python_converter.hpp" export * }
-  module "python_to_python_indirect.hpp" { header "python/to_python_indirect.hpp" export * }
+  //module "python_to_python_indirect.hpp" { header "python/to_python_indirect.hpp" export * }
   module "python_to_python_value.hpp" { header "python/to_python_value.hpp" export * }
   module "python_tuple.hpp" { header "python/tuple.hpp" export * }
   module "python_type_id.hpp" { header "python/type_id.hpp" export * }
@@ -5291,14 +5283,14 @@ template <BOOST_PP_ENUM_PARAMS_WITH_A_DEFAULT(BOOST_PYTHON_LIST_SIZE, cl...
           ^
   */
   // module "python__detail__type_list_impl" { header "python/detail/type_list_impl.hpp" export * }
-  module "python__detail__value_arg" { header "python/detail/value_arg.hpp" export * }
+  //module "python__detail__value_arg" { header "python/detail/value_arg.hpp" export * }
   module "python__detail__value_is_shared_ptr" { header "python/detail/value_is_shared_ptr.hpp" export * }
   module "python__detail__value_is_xxx" { header "python/detail/value_is_xxx.hpp" export * }
   module "python__detail__void_ptr" { header "python/detail/void_ptr.hpp" export * }
   module "python__detail__void_return" { header "python/detail/void_return.hpp" export * }
   module "python__numpy__config" { header "python/numpy/config.hpp" export * }
   module "python__numpy__numpy_object_mgr_traits" { header "python/numpy/numpy_object_mgr_traits.hpp" export * }
-  module "python__object__forward" { header "python/object/forward.hpp" export * }
+  //module "python__object__forward" { header "python/object/forward.hpp" export * }
   module "python__object__value_holder_fwd" { header "python/object/value_holder_fwd.hpp" export * }
 }
 module boost_qvm {
@@ -5711,7 +5703,77 @@ module boost_date_time {
     module "units__base_units__us__teaspoon" { header "units/base_units/us/teaspoon.hpp" export * }
     module "units__base_units__us__ton" { header "units/base_units/us/ton.hpp" export * }
     module "units__base_units__us__yard" { header "units/base_units/us/yard.hpp" export * }
-    module "units__cmath" { header "units/cmath.hpp" export * }
+/*
+ * /home/teemperor/llvm/boost-compile/inc-cms/boost/math/special_functions/next.hpp:195:71: error: no matching function for call to 'fabs'
+   if((fpclass != (int)FP_SUBNORMAL) && (fpclass != (int)FP_ZERO) && (fabs(val) < detail::get_min_shift_value<T>()) && (val != -tools::min_value<T>()))
+                                                                      ^~~~
+/home/teemperor/llvm/boost-compile/inc-cms/boost/math/special_functions/next.hpp:267:19: note: in instantiation of function template specialization
+      'boost::math::detail::float_next_imp<boost::math::concepts::std_real_concept, boost::math::policies::policy<boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy> >' requested here
+   return detail::float_next_imp(detail::normalize_value(static_cast<result_type>(val), typename detail::has_hidden_guard_digits<result_type>::type()), mpl::bool_<!st...
+                  ^
+/home/teemperor/llvm/boost-compile/inc-cms/boost/math/special_functions/next.hpp:435:42: note: in instantiation of function template specialization
+      'boost::math::float_next<boost::math::concepts::std_real_concept, boost::math::policies::policy<boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy> >' requested here
+   return val < direction ? boost::math::float_next<result_type>(val, pol) : val == direction ? val : boost::math::float_prior<result_type>(val, pol);
+                                         ^
+/home/teemperor/llvm/boost-compile/inc-cms/boost/math/special_functions/next.hpp:441:11: note: in instantiation of function template specialization
+      'boost::math::nextafter<boost::math::concepts::std_real_concept, boost::math::concepts::std_real_concept,
+      boost::math::policies::policy<boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy,
+      boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy> >' requested
+      here
+   return nextafter(val, direction, policies::policy<>());
+          ^
+/home/teemperor/llvm/boost-compile/inc-cms/boost/math/concepts/std_real_concept.hpp:230:24: note: in instantiation of function template specialization
+      'boost::math::nextafter<boost::math::concepts::std_real_concept, boost::math::concepts::std_real_concept>' requested here
+{ return (boost::math::nextafter)(a, b); }
+                       ^
+/usr/include/bits/mathcalls.h:162:14: note: candidate function not viable: no known conversion from 'const boost::math::concepts::std_real_concept' to 'double' for 1st
+      argument
+__MATHCALLX (fabs,, (_Mdouble_ __x), (__const__));
+             ^
+/usr/include/math.h:278:26: note: expanded from macro '__MATHCALLX'
+  __MATHDECLX (_Mdouble_,function,suffix, args, attrib)
+                         ^
+/usr/include/math.h:280:22: note: expanded from macro '__MATHDECLX'
+  __MATHDECL_1(type, function,suffix, args) __attribute__ (attrib); \
+                     ^
+/usr/include/math.h:283:31: note: expanded from macro '__MATHDECL_1'
+  extern type __MATH_PRECNAME(function,suffix) args __THROW
+                              ^
+/usr/include/math.h:286:42: note: expanded from macro '__MATH_PRECNAME'
+#define __MATH_PRECNAME(name,r) __CONCAT(name,r)
+                                         ^
+/usr/include/sys/cdefs.h:105:23: note: expanded from macro '__CONCAT'
+#define __CONCAT(x,y)   x ## y
+                        ^
+/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/cmath:241:3: note: candidate function not viable: no known conversion from
+      'const boost::math::concepts::std_real_concept' to 'float' for 1st argument
+  fabs(float __x)
+  ^
+/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/cmath:245:3: note: candidate function not viable: no known conversion from
+      'const boost::math::concepts::std_real_concept' to 'long double' for 1st argument
+  fabs(long double __x)
+  ^
+/home/teemperor/llvm/boost-compile/inc-cms/boost/math/concepts/real_concept.hpp:212:21: note: candidate function not viable: no known conversion from
+      'const boost::math::concepts::std_real_concept' to 'boost::math::concepts::real_concept' for 1st argument
+inline real_concept fabs(real_concept a)
+                    ^
+/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/complex:1846:5: note: candidate template ignored: could not match 'complex<type-parameter-0-0>'
+      against 'const boost::math::concepts::std_real_concept'
+    fabs(const std::complex<_Tp>& __z)
+    ^
+/usr/bin/../lib64/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/cmath:253:5: note: candidate template ignored: substitution failure
+      [with _Tp = boost::math::concepts::std_real_concept]: no type named '__type' in '__gnu_cxx::__enable_if<false, double>'
+    fabs(_Tp __x)
+    ^
+    */
+    //module "units__cmath" { header "units/cmath.hpp" export * }
     module "units__config" { header "units/config.hpp" export * }
     module "units__conversion" { header "units/conversion.hpp" export * }
     module "units__derived_dimension" { header "units/derived_dimension.hpp" export * }
@@ -6146,7 +6208,17 @@ module boost_date_time {
     module "phoenix__core__detail__expression" { header "phoenix/core/detail/expression.hpp" export * }
     module "phoenix__core__detail__function_eval" { header "phoenix/core/detail/function_eval.hpp" export * }
     module "phoenix__core__detail__index_sequence" { header "phoenix/core/detail/index_sequence.hpp" export * }
-    module "phoenix__core__detail__phx2_result" { header "phoenix/core/detail/phx2_result.hpp" export * }
+    /*
+     *                           ^
+While building module 'boost_modules_wrapper' imported from /home/teemperor/llvm/boost-compile/cms.cpp:2:
+In file included from <module-includes>:737:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/phoenix/bind/bind_function.hpp:18:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/phoenix/core/detail/function_eval.hpp:17:
+/home/teemperor/llvm/boost-compile/inc-cms/boost/phoenix/core/detail/phx2_result.hpp:40:20: error: declaration of 'eval_if' must be imported from module 'boost_mpl.mpl__bind'
+      before it is required
+            : mpl::eval_if<
+            */
+    //module "phoenix__core__detail__phx2_result" { header "phoenix/core/detail/phx2_result.hpp" export * }
     module "phoenix__core__domain" { header "phoenix/core/domain.hpp" export * }
     module "phoenix__core__environment" { header "phoenix/core/environment.hpp" export * }
     module "phoenix__core__expression" { header "phoenix/core/expression.hpp" export * }
@@ -6448,7 +6520,14 @@ In file included from /home/teemperor/boost-compile/inc/boost/spirit/home/karma/
     module "spirit__home__karma__detail__generate_to" { header "spirit/home/karma/detail/generate_to.hpp" export * }
     module "spirit__home__karma__detail__get_casetag" { header "spirit/home/karma/detail/get_casetag.hpp" export * }
     module "spirit__home__karma__detail__get_stricttag" { header "spirit/home/karma/detail/get_stricttag.hpp" export * }
-    module "spirit__home__karma__detail__indirect_iterator" { header "spirit/home/karma/detail/indirect_iterator.hpp" export * }
+    /*
+     * While building module 'boost_modules_wrapper' imported from /home/teemperor/llvm/boost-compile/cms.cpp:2:
+In file included from <module-includes>:997:
+/home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/karma/detail/indirect_iterator.hpp:26:37: error: missing '#include "boost/detail/iterator.hpp"'; declaration of
+      'iterator_traits' must be imported from module 'boost_utils.boost_detail.detail__iterator' before it is required
+          , typename boost::detail::iterator_traits<Iterator>::value_type
+          */
+    //module "spirit__home__karma__detail__indirect_iterator" { header "spirit/home/karma/detail/indirect_iterator.hpp" export * }
     module "spirit__home__karma__detail__output_iterator" { header "spirit/home/karma/detail/output_iterator.hpp" export * }
     module "spirit__home__karma__detail__pass_container" { header "spirit/home/karma/detail/pass_container.hpp" export * }
     module "spirit__home__karma__detail__string_compare" { header "spirit/home/karma/detail/string_compare.hpp" export * }
@@ -6728,7 +6807,19 @@ namespace boost { namespace spirit { namespace detail
     module "spirit__home__support__detail__math__detail__fp_traits" { header "spirit/home/support/detail/math/detail/fp_traits.hpp" export * }
     module "spirit__home__support__detail__math__fpclassify" { header "spirit/home/support/detail/math/fpclassify.hpp" export * }
     module "spirit__home__support__detail__math__signbit" { header "spirit/home/support/detail/math/signbit.hpp" export * }
-    module "spirit__home__support__detail__pow10" { header "spirit/home/support/detail/pow10.hpp" export * }
+/*
+ * While building module 'boost_modules_wrapper' imported from /home/teemperor/llvm/boost-compile/cms.cpp:2:
+In file included from <module-includes>:1023:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/karma.hpp:15:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/karma/numeric.hpp:13:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/karma/numeric/bool.hpp:29:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/karma/numeric/bool_policies.hpp:16:
+In file included from /home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/karma/numeric/detail/numeric_utils.hpp:21:
+/home/teemperor/llvm/boost-compile/inc-cms/boost/spirit/home/support/detail/pow10.hpp:88:13: error: use of undeclared identifier 'BOOST_ASSERT'
+            BOOST_ASSERT(dim < sizeof(exponents)/sizeof(double));
+            ^
+            */
+    //module "spirit__home__support__detail__pow10" { header "spirit/home/support/detail/pow10.hpp" export * }
     module "spirit__home__support__detail__scoped_enum_emulation" { header "spirit/home/support/detail/scoped_enum_emulation.hpp" export * }
     module "spirit__home__support__detail__sign" { header "spirit/home/support/detail/sign.hpp" export * }
     module "spirit__home__support__extended_variant" { header "spirit/home/support/extended_variant.hpp" export * }
@@ -7305,7 +7396,7 @@ namespace boost { namespace spirit { namespace detail
     module "math__special_functions__hankel" { header "math/special_functions/hankel.hpp" export * }
     module "math__special_functions__hermite" { header "math/special_functions/hermite.hpp" export * }
     module "math__special_functions__heuman_lambda" { header "math/special_functions/heuman_lambda.hpp" export * }
-    module "math__special_functions" { header "math/special_functions.hpp" export * }
+    //module "math__special_functions" { header "math/special_functions.hpp" export * }
     module "math__special_functions__hypot" { header "math/special_functions/hypot.hpp" export * }
     module "math__special_functions__jacobi_elliptic" { header "math/special_functions/jacobi_elliptic.hpp" export * }
     module "math__special_functions__jacobi_zeta" { header "math/special_functions/jacobi_zeta.hpp" export * }
@@ -7315,7 +7406,7 @@ namespace boost { namespace spirit { namespace detail
     module "math__special_functions__log1p" { header "math/special_functions/log1p.hpp" export * }
     module "math__special_functions__math_fwd" { header "math/special_functions/math_fwd.hpp" export * }
     module "math__special_functions__modf" { header "math/special_functions/modf.hpp" export * }
-    module "math__special_functions__next" { header "math/special_functions/next.hpp" export * }
+    //module "math__special_functions__next" { header "math/special_functions/next.hpp" export * }
     module "math__special_functions__nonfinite_num_facets" { header "math/special_functions/nonfinite_num_facets.hpp" export * }
     module "math__special_functions__owens_t" { header "math/special_functions/owens_t.hpp" export * }
     module "math__special_functions__polygamma" { header "math/special_functions/polygamma.hpp" export * }
@@ -7332,7 +7423,7 @@ namespace boost { namespace spirit { namespace detail
     module "math__special_functions__sqrt1pm1" { header "math/special_functions/sqrt1pm1.hpp" export * }
     module "math__special_functions__trigamma" { header "math/special_functions/trigamma.hpp" export * }
     module "math__special_functions__trunc" { header "math/special_functions/trunc.hpp" export * }
-    module "math__special_functions__ulp" { header "math/special_functions/ulp.hpp" export * }
+    //module "math__special_functions__ulp" { header "math/special_functions/ulp.hpp" export * }
     module "math__special_functions__zeta" { header "math/special_functions/zeta.hpp" export * }
     module "math__tools__big_constant" { header "math/tools/big_constant.hpp" export * }
     module "math__tools__config" { header "math/tools/config.hpp" export * }
@@ -7752,7 +7843,39 @@ class back_insert_iterator<basic_string<char> > : public
     module "range__adaptor__formatted" { header "range/adaptor/formatted.hpp" export * }
     module "range__adaptor__indexed" { header "range/adaptor/indexed.hpp" export * }
     module "range__adaptor__indirected" { header "range/adaptor/indirected.hpp" export * }
-    module "range__adaptor__map" { header "range/adaptor/map.hpp" export * }
+/* It seems this header is just broken with modules.
+ * While building module 'boost_assign' imported from /home/teemperor/llvm/boost-compile/compile-cms.cpp:11:
+While building module 'boost_modules_wrapper' imported from /home/teemperor/llvm/boost-compile/inc-cms/boost/assign/list_inserter.hpp:22:
+In file included from <module-includes>:2251:
+/home/teemperor/llvm/boost-compile/inc-cms/boost/range/adaptor/map.hpp:128:34: error: no member named 'transformed' in namespace 'boost::adaptors'; did you mean 'transform'?
+                boost::adaptors::transformed( select_first<StdPairRng>() ) );
+                ~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+                                 transform
+/home/teemperor/llvm/boost-compile/inc-cms/boost/range/adaptor/transformed.hpp:115:9: note: 'transform' declared here
+        transform(SinglePassRange& rng, UnaryFunction fn)
+        ^
+While building module 'boost_assign' imported from /home/teemperor/llvm/boost-compile/compile-cms.cpp:11:
+While building module 'boost_modules_wrapper' imported from /home/teemperor/llvm/boost-compile/inc-cms/boost/assign/list_inserter.hpp:22:
+In file included from <module-includes>:2251:
+/home/teemperor/llvm/boost-compile/inc-cms/boost/range/adaptor/map.hpp:138:34: error: no member named 'transformed' in namespace 'boost::adaptors'; did you mean 'transform'?
+                boost::adaptors::transformed( select_second_mutable<StdPairRng>() ) );
+                ~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+                                 transform
+/home/teemperor/llvm/boost-compile/inc-cms/boost/range/adaptor/transformed.hpp:115:9: note: 'transform' declared here
+        transform(SinglePassRange& rng, UnaryFunction fn)
+        ^
+While building module 'boost_assign' imported from /home/teemperor/llvm/boost-compile/compile-cms.cpp:11:
+While building module 'boost_modules_wrapper' imported from /home/teemperor/llvm/boost-compile/inc-cms/boost/assign/list_inserter.hpp:22:
+In file included from <module-includes>:2251:
+/home/teemperor/llvm/boost-compile/inc-cms/boost/range/adaptor/map.hpp:149:34: error: no member named 'transformed' in namespace 'boost::adaptors'; did you mean 'transform'?
+                boost::adaptors::transformed( select_second_const<StdPairRng>() ) );
+                ~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+                                 transform
+/home/teemperor/llvm/boost-compile/inc-cms/boost/range/adaptor/transformed.hpp:115:9: note: 'transform' declared here
+        transform(SinglePassRange& rng, UnaryFunction fn)
+        ^
+        */
+    //module "range__adaptor__map" { header "range/adaptor/map.hpp" export * }
     module "range__adaptor__replaced" { header "range/adaptor/replaced.hpp" export * }
     module "range__adaptor__replaced_if" { header "range/adaptor/replaced_if.hpp" export * }
     module "range__adaptor__reversed" { header "range/adaptor/reversed.hpp" export * }
@@ -8584,11 +8707,11 @@ module boost_type_traits {
   module "type_traits__alignment_traits" { header "type_traits/alignment_traits.hpp" export * }
   module "type_traits__arithmetic_traits" { header "type_traits/arithmetic_traits.hpp" export * }
   module "type_traits__array_traits" { header "type_traits/array_traits.hpp" export * }
-  module "type_traits__broken_compiler_spec" { header "type_traits/broken_compiler_spec.hpp" export * }
+  // deprecated: module "type_traits__broken_compiler_spec" { header "type_traits/broken_compiler_spec.hpp" export * }
   module "type_traits__common_type" { header "type_traits/common_type.hpp" export * }
   module "type_traits__composite_traits" { header "type_traits/composite_traits.hpp" export * }
   module "type_traits__conditional" { header "type_traits/conditional.hpp" export * }
-  module "type_traits__config" { header "type_traits/config.hpp" export * }
+  // deprecated: module "type_traits__config" { header "type_traits/config.hpp" export * }
   module "type_traits__conversion_traits" { header "type_traits/conversion_traits.hpp" export * }
   module "type_traits__copy_cv" { header "type_traits/copy_cv.hpp" export * }
   module "type_traits__cv_traits" { header "type_traits/cv_traits.hpp" export * }
@@ -8609,14 +8732,14 @@ template<class T1, class T2> struct common_type_decay_helper<T1, T2, T1, T2>: co
   module "type_traits__detail__composite_member_pointer_type" { header "type_traits/detail/composite_member_pointer_type.hpp" export * }
   module "type_traits__detail__composite_pointer_type" { header "type_traits/detail/composite_pointer_type.hpp" export * }
   module "type_traits__detail__config" { header "type_traits/detail/config.hpp" export * }
-  module "type_traits__detail__ice_and" { header "type_traits/detail/ice_and.hpp" export * }
-  module "type_traits__detail__ice_eq" { header "type_traits/detail/ice_eq.hpp" export * }
-  module "type_traits__detail__ice_not" { header "type_traits/detail/ice_not.hpp" export * }
-  module "type_traits__detail__ice_or" { header "type_traits/detail/ice_or.hpp" export * }
+  // deprecated: module "type_traits__detail__ice_and" { header "type_traits/detail/ice_and.hpp" export * }
+  // deprecated: module "type_traits__detail__ice_eq" { header "type_traits/detail/ice_eq.hpp" export * }
+  // deprecated: module "type_traits__detail__ice_not" { header "type_traits/detail/ice_not.hpp" export * }
+  // deprecated: module "type_traits__detail__ice_or" { header "type_traits/detail/ice_or.hpp" export * }
   module "type_traits__detail__is_mem_fun_pointer_impl" { header "type_traits/detail/is_mem_fun_pointer_impl.hpp" export * }
   module "type_traits__detail__is_mem_fun_pointer_tester" { header "type_traits/detail/is_mem_fun_pointer_tester.hpp" export * }
   module "type_traits__detail__mp_defer" { header "type_traits/detail/mp_defer.hpp" export * }
-  module "type_traits__detail__template_arity_spec" { header "type_traits/detail/template_arity_spec.hpp" export * }
+  // deprecated: module "type_traits__detail__template_arity_spec" { header "type_traits/detail/template_arity_spec.hpp" export * }
   module "type_traits__detail__yes_no_type" { header "type_traits/detail/yes_no_type.hpp" export * }
   module "type_traits__extent" { header "type_traits/extent.hpp" export * }
   module "type_traits__floating_point_promotion" { header "type_traits/floating_point_promotion.hpp" export * }
@@ -8673,7 +8796,7 @@ template<class T1, class T2> struct common_type_decay_helper<T1, T2, T1, T2>: co
   module "type_traits__has_unary_plus" { header "type_traits/has_unary_plus.hpp" export * }
   module "type_traits__has_virtual_destructor" { header "type_traits/has_virtual_destructor.hpp" export * }
   module "type_traits" { header "type_traits.hpp" export * }
-  module "type_traits__ice" { header "type_traits/ice.hpp" export * }
+  // deprecated: module "type_traits__ice" { header "type_traits/ice.hpp" export * }
   module "type_traits__integral_constant" { header "type_traits/integral_constant.hpp" export * }
   module "type_traits__integral_promotion" { header "type_traits/integral_promotion.hpp" export * }
   module "type_traits__intrinsics" { header "type_traits/intrinsics.hpp" export * }
@@ -8763,8 +8886,8 @@ module boost_uuid {
   module "uuid__name_generator" { header "uuid/name_generator.hpp" export * }
   module "uuid__nil_generator" { header "uuid/nil_generator.hpp" export * }
   module "uuid__random_generator" { header "uuid/random_generator.hpp" export * }
-  module "uuid__seed_rng" { header "uuid/seed_rng.hpp" export * }
-  module "uuid__sha1" { header "uuid/sha1.hpp" export * }
+  //module "uuid__seed_rng" { header "uuid/seed_rng.hpp" export * }
+  // deprecated: module "uuid__sha1" { header "uuid/sha1.hpp" export * }
   module "uuid__string_generator" { header "uuid/string_generator.hpp" export * }
   module "uuid__uuid_generators" { header "uuid/uuid_generators.hpp" export * }
   module "uuid__uuid" { header "uuid/uuid.hpp" export * }

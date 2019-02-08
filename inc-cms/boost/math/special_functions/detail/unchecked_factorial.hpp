@@ -29,6 +29,8 @@
 #include <boost/array.hpp>
 #endif
 
+#include "boost/math/tools/convert_from_string.hpp"
+
 namespace boost { namespace math
 {
 // Forward declarations:
