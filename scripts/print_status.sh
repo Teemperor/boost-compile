@@ -2,6 +2,8 @@
 
 while :
 do
-    find "$1" -printf '%T+ %p SIZE: %s\n' | sort -r | head -n10
+    echo "#######STATUS:"
+    find "$1" -type f -printf '%T+ %p SIZE: %s\n' | sort -r | head -n3
+    echo "#######"
     sleep 10
 done

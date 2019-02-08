@@ -22,6 +22,7 @@ cd build
 bash "$DIR/print_status.sh" "$DIR/../build/pcm" &
 BUSY_PID=$!
 
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM
 
 cmake -Duse_modules=$3 -Dcms=$4 ..
 if [[ "$3" == "On" || "$3" == "print" ]]; then
@@ -43,4 +44,7 @@ else
   make VERBOSE=1
 fi
 
+set +e
 kill $BUSY_PID
+set -e
+exit 0
