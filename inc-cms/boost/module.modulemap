@@ -146,7 +146,6 @@ module boost_asio {
   module "asio__buffers_iterator" { header "asio/buffers_iterator.hpp" export * }
   module "asio__completion_condition" { header "asio/completion_condition.hpp" export * }
   module "asio__coroutine" { header "asio/coroutine.hpp" export * }
-  //module "asio__detail__addressof" { header "asio/detail/addressof.hpp" export * }
   module "asio__detail__array_fwd" { header "asio/detail/array_fwd.hpp" export * }
   module "asio__detail__array" { header "asio/detail/array.hpp" export * }
   module "asio__detail__assert" { header "asio/detail/assert.hpp" export * }
@@ -164,7 +163,6 @@ module boost_asio {
   module "asio__detail__dependent_type" { header "asio/detail/dependent_type.hpp" export * }
   module "asio__detail__dev_poll_reactor" { header "asio/detail/dev_poll_reactor.hpp" export * }
   module "asio__detail__fenced_block" { header "asio/detail/fenced_block.hpp" export * }
- // module "asio__detail__function" { header "asio/detail/function.hpp" export * }
   module "asio__detail__gcc_arm_fenced_block" { header "asio/detail/gcc_arm_fenced_block.hpp" export * }
   module "asio__detail__gcc_hppa_fenced_block" { header "asio/detail/gcc_hppa_fenced_block.hpp" export * }
   module "asio__detail__handler_alloc_helpers" { header "asio/detail/handler_alloc_helpers.hpp" export * }
@@ -177,7 +175,6 @@ module boost_asio {
   module "asio__detail__impl__epoll_reactor" { header "asio/detail/impl/epoll_reactor.hpp" export * }
   module "asio__detail__impl__kqueue_reactor" { header "asio/detail/impl/kqueue_reactor.hpp" export * }
   module "asio__detail__impl__select_reactor" { header "asio/detail/impl/select_reactor.hpp" export * }
-  //module "asio__detail__impl__win_iocp_io_service" { header "asio/detail/impl/win_iocp_io_service.hpp" export * }
   module "asio__detail__impl__winrt_timer_scheduler" { header "asio/detail/impl/winrt_timer_scheduler.hpp" export * }
   module "asio__detail__io_control" { header "asio/detail/io_control.hpp" export * }
   module "asio__detail__keyword_tss_ptr" { header "asio/detail/keyword_tss_ptr.hpp" export * }
@@ -218,7 +215,6 @@ In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/asio.
   module "asio__detail__scoped_lock" { header "asio/detail/scoped_lock.hpp" export * }
   module "asio__detail__scoped_ptr" { header "asio/detail/scoped_ptr.hpp" export * }
   module "asio__detail__select_reactor" { header "asio/detail/select_reactor.hpp" export * }
-  //module "asio__detail__shared_ptr" { header "asio/detail/shared_ptr.hpp" export * }
   module "asio__detail__signal_blocker" { header "asio/detail/signal_blocker.hpp" export * }
   module "asio__detail__signal_init" { header "asio/detail/signal_init.hpp" export * }
   module "asio__detail__socket_option" { header "asio/detail/socket_option.hpp" export * }
@@ -231,22 +227,18 @@ In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/asio.
   module "asio__detail__std_mutex" { header "asio/detail/std_mutex.hpp" export * }
   module "asio__detail__std_static_mutex" { header "asio/detail/std_static_mutex.hpp" export * }
   module "asio__detail__std_thread" { header "asio/detail/std_thread.hpp" export * }
-  //module "asio__detail__task_io_service_thread_info" { header "asio/detail/task_io_service_thread_info.hpp" export * }
   module "asio__detail__thread_info_base" { header "asio/detail/thread_info_base.hpp" export * }
   module "asio__detail__throw_exception" { header "asio/detail/throw_exception.hpp" export * }
   module "asio__detail__timer_scheduler_fwd" { header "asio/detail/timer_scheduler_fwd.hpp" export * }
   module "asio__detail__tss_ptr" { header "asio/detail/tss_ptr.hpp" export * }
   module "asio__detail__type_traits" { header "asio/detail/type_traits.hpp" export * }
   module "asio__detail__variadic_templates" { header "asio/detail/variadic_templates.hpp" export * }
-  //module "asio__detail__weak_ptr" { header "asio/detail/weak_ptr.hpp" export * }
-  //module "asio__detail__winapi_thread" { header "asio/detail/winapi_thread.hpp" export * }
   module "asio__detail__win_event" { header "asio/detail/win_event.hpp" export * }
   module "asio__detail__win_fd_set_adapter" { header "asio/detail/win_fd_set_adapter.hpp" export * }
   module "asio__detail__win_fenced_block" { header "asio/detail/win_fenced_block.hpp" export * }
   module "asio__detail__win_iocp_handle_read_op" { header "asio/detail/win_iocp_handle_read_op.hpp" export * }
   module "asio__detail__win_iocp_handle_service" { header "asio/detail/win_iocp_handle_service.hpp" export * }
   module "asio__detail__win_iocp_handle_write_op" { header "asio/detail/win_iocp_handle_write_op.hpp" export * }
-  //module "asio__detail__win_iocp_io_service" { header "asio/detail/win_iocp_io_service.hpp" export * }
   module "asio__detail__win_iocp_null_buffers_op" { header "asio/detail/win_iocp_null_buffers_op.hpp" export * }
   module "asio__detail__win_iocp_operation" { header "asio/detail/win_iocp_operation.hpp" export * }
   module "asio__detail__win_iocp_overlapped_op" { header "asio/detail/win_iocp_overlapped_op.hpp" export * }
@@ -290,14 +282,11 @@ In file included from /home/travis/build/Teemperor/boost-compile/inc/boost/asio.
   module "asio__placeholders" { header "asio/placeholders.hpp" export * }
   module "asio__posix__descriptor_base" { header "asio/posix/descriptor_base.hpp" export * }
   module "asio__socket_base" { header "asio/socket_base.hpp" export * }
-  //module "asio__ssl__basic_context" { header "asio/ssl/basic_context.hpp" export * }
   module "asio__ssl__context_base" { header "asio/ssl/context_base.hpp" export * }
-  //module "asio__ssl__context_service" { header "asio/ssl/context_service.hpp" export * }
   module "asio__ssl__detail__openssl_types" { header "asio/ssl/detail/openssl_types.hpp" export * }
   module "asio__ssl__detail__password_callback" { header "asio/ssl/detail/password_callback.hpp" export * }
   module "asio__ssl__detail__verify_callback" { header "asio/ssl/detail/verify_callback.hpp" export * }
   module "asio__ssl__stream_base" { header "asio/ssl/stream_base.hpp" export * }
-  //module "asio__ssl__stream_service" { header "asio/ssl/stream_service.hpp" export * }
   module "asio__ssl__verify_context" { header "asio/ssl/verify_context.hpp" export * }
   module "asio__ssl__verify_mode" { header "asio/ssl/verify_mode.hpp" export * }
   module "asio__streambuf" { header "asio/streambuf.hpp" export * }
@@ -721,15 +710,7 @@ module boost_context {
   module "context__detail__disable_overload" { header "context/detail/disable_overload.hpp" export * }
   module "context__detail__exception" { header "context/detail/exception.hpp" export * }
   module "context__detail__exchange" { header "context/detail/exchange.hpp" export * }
-  module "context__detail__fcontext_arm" { header "context/detail/fcontext_arm.hpp" export * }
-  module "context__detail__fcontext_arm_mac" { header "context/detail/fcontext_arm_mac.hpp" export * }
-  module "context__detail__fcontext_arm_win" { header "context/detail/fcontext_arm_win.hpp" export * }
   module "context__detail__fcontext" { header "context/detail/fcontext.hpp" export * }
-  module "context__detail__fcontext_mips" { header "context/detail/fcontext_mips.hpp" export * }
-  module "context__detail__fcontext_ppc" { header "context/detail/fcontext_ppc.hpp" export * }
-  module "context__detail__fcontext_sparc" { header "context/detail/fcontext_sparc.hpp" export * }
-  module "context__detail__fcontext_x86_64" { header "context/detail/fcontext_x86_64.hpp" export * }
-  module "context__detail__fcontext_x86_64_win" { header "context/detail/fcontext_x86_64_win.hpp" export * }
   module "context__detail__index_sequence" { header "context/detail/index_sequence.hpp" export * }
   module "context__detail__invoke" { header "context/detail/invoke.hpp" export * }
   module "context__detail__tuple" { header "context/detail/tuple.hpp" export * }
@@ -738,7 +719,6 @@ module boost_context {
   module "context__execution_context_v2" { header "context/execution_context_v2.hpp" export * }
   module "context__fixedsize_stack" { header "context/fixedsize_stack.hpp" export * }
   module "context__flags" { header "context/flags.hpp" export * }
-  module "context__posix__fixedsize_stack" { header "context/posix/fixedsize_stack.hpp" export * }
   module "context__posix__protected_fixedsize_stack" { header "context/posix/protected_fixedsize_stack.hpp" export * }
   module "context__protected_fixedsize_stack" { header "context/protected_fixedsize_stack.hpp" export * }
   module "context__segmented_stack" { header "context/segmented_stack.hpp" export * }
@@ -748,7 +728,6 @@ module boost_context {
 module boost_convert {
   module "convert__detail__boost_parameter_ext" { header "convert/detail/boost_parameter_ext.hpp" export * }
   module "convert__detail__char" { header "convert/detail/char.hpp" export * }
-  //module "convert__detail__forward" { header "convert/detail/forward.hpp" export * }
   module "convert__detail__has_member" { header "convert/detail/has_member.hpp" export * }
   module "convert__detail__is_callable" { header "convert/detail/is_callable.hpp" export * }
   module "convert__detail__is_fun" { header "convert/detail/is_fun.hpp" export * }
@@ -878,7 +857,6 @@ module boost_fiber {
   module "fiber__detail__spinlock_ttas_adaptive" { header "fiber/detail/spinlock_ttas_adaptive.hpp" export * }
   module "fiber__detail__spinlock_ttas_futex" { header "fiber/detail/spinlock_ttas_futex.hpp" export * }
   module "fiber__detail__spinlock_ttas" { header "fiber/detail/spinlock_ttas.hpp" export * }
-  module "fiber__detail__wrap" { header "fiber/detail/wrap.hpp" export * }
   module "fiber__exceptions" { header "fiber/exceptions.hpp" export * }
   module "fiber__fiber" { header "fiber/fiber.hpp" export * }
   module "fiber__fixedsize_stack" { header "fiber/fixedsize_stack.hpp" export * }
@@ -1932,7 +1910,6 @@ module boost_geometry {
   module "geometry__core__radius" { header "geometry/core/radius.hpp" export * }
   module "geometry__core__reverse_dispatch" { header "geometry/core/reverse_dispatch.hpp" export * }
   module "geometry__core__ring_type" { header "geometry/core/ring_type.hpp" export * }
-  module "geometry__core__srs" { header "geometry/core/srs.hpp" export * }
   module "geometry__core__tag_cast" { header "geometry/core/tag_cast.hpp" export * }
   module "geometry__core__tag" { header "geometry/core/tag.hpp" export * }
   module "geometry__core__tags" { header "geometry/core/tags.hpp" export * }
@@ -2182,7 +2159,6 @@ module boost_geometry {
   module "geometry__strategies__relate" { header "geometry/strategies/relate.hpp" export * }
   module "geometry__strategies__side_info" { header "geometry/strategies/side_info.hpp" export * }
   module "geometry__strategies__spherical__azimuth" { header "geometry/strategies/spherical/azimuth.hpp" export * }
-  module "geometry__strategies__spherical__compare_circular" { header "geometry/strategies/spherical/compare_circular.hpp" export * }
   module "geometry__strategies__spherical__distance_cross_track" { header "geometry/strategies/spherical/distance_cross_track.hpp" export * }
   module "geometry__strategies__spherical__distance_cross_track_point_box" { header "geometry/strategies/spherical/distance_cross_track_point_box.hpp" export * }
   module "geometry__strategies__spherical__distance_haversine" { header "geometry/strategies/spherical/distance_haversine.hpp" export * }
@@ -3882,17 +3858,11 @@ module boost_metaparse {
   module "metaparse__v1__impl__one_char_except_not_used" { header "metaparse/v1/impl/one_char_except_not_used.hpp" export * }
   module "metaparse__v1__impl__one_of_fwd_op" { header "metaparse/v1/impl/one_of_fwd_op.hpp" export * }
   module "metaparse__v1__impl__one_of" { header "metaparse/v1/impl/one_of.hpp" export * }
-  //module "metaparse__v1__impl__remove_trailing_no_chars" { header "metaparse/v1/impl/remove_trailing_no_chars.hpp" export * }
   module "metaparse__v1__impl__returns" { header "metaparse/v1/impl/returns.hpp" export * }
   module "metaparse__v1__impl__sequence" { header "metaparse/v1/impl/sequence.hpp" export * }
   module "metaparse__v1__impl__sequence_impl" { header "metaparse/v1/impl/sequence_impl.hpp" export * }
-  module "metaparse__v1__impl__size" { header "metaparse/v1/impl/size.hpp" export * }
-  module "metaparse__v1__impl__skip_seq" { header "metaparse/v1/impl/skip_seq.hpp" export * }
-  module "metaparse__v1__impl__split_at_c" { header "metaparse/v1/impl/split_at_c.hpp" export * }
-  module "metaparse__v1__impl__string_at" { header "metaparse/v1/impl/string_at.hpp" export * }
   module "metaparse__v1__impl__string_iterator" { header "metaparse/v1/impl/string_iterator.hpp" export * }
   module "metaparse__v1__impl__string_iterator_tag" { header "metaparse/v1/impl/string_iterator_tag.hpp" export * }
-  module "metaparse__v1__impl__update_c" { header "metaparse/v1/impl/update_c.hpp" export * }
   module "metaparse__v1__impl__void_" { header "metaparse/v1/impl/void_.hpp" export * }
   module "metaparse__v1__int_" { header "metaparse/v1/int_.hpp" export * }
   module "metaparse__v1__is_error" { header "metaparse/v1/is_error.hpp" export * }
@@ -5145,7 +5115,6 @@ module boost_python {
   module "python_manage_new_object.hpp" { header "python/manage_new_object.hpp" export * }
   module "python_module.hpp" { header "python/module.hpp" export * }
   module "python_module_init.hpp" { header "python/module_init.hpp" export * }
-  //module "python_numeric.hpp" { header "python/numeric.hpp" export * }
   module "python_numpy.hpp" { header "python/numpy.hpp" export * }
   module "python_object_attributes.hpp" { header "python/object_attributes.hpp" export * }
   module "python_object_core.hpp" { header "python/object_core.hpp" export * }
@@ -8176,8 +8145,6 @@ module boost_detail {
   module "detail__allocator_utilities" { header "detail/allocator_utilities.hpp" export * }
   module "detail__atomic_count" { header "detail/atomic_count.hpp" export * }
   // textual
-  //module "detail__atomic_redef_macros" { header "detail/atomic_redef_macros.hpp" export * }
-  //module "detail__atomic_undef_macros" { header "detail/atomic_undef_macros.hpp" export * }
   module "detail__binary_search" { header "detail/binary_search.hpp" export * }
   module "detail__bitmask" { header "detail/bitmask.hpp" export * }
   module "detail__call_traits" { header "detail/call_traits.hpp" export * }
@@ -8526,24 +8493,6 @@ module boost_token_iterator {
 module boost_tokenizer {
   module "tokenizer" { header "tokenizer.hpp" export * }
 }
-module boost_tr1 {
-  module "tr1__array" { header "tr1/array.hpp" export * }
-  module "tr1__cmath" { header "tr1/cmath.hpp" export * }
-  module "tr1__complex" { header "tr1/complex.hpp" export * }
-  module "tr1__detail__config_all" { header "tr1/detail/config_all.hpp" export * }
-  module "tr1__detail__config" { header "tr1/detail/config.hpp" export * }
-  module "tr1__detail__functor2iterator" { header "tr1/detail/functor2iterator.hpp" export * }
-  module "tr1__detail__math_overloads" { header "tr1/detail/math_overloads.hpp" export * }
-  module "tr1__functional" { header "tr1/functional.hpp" export * }
-  module "tr1__memory" { header "tr1/memory.hpp" export * }
-  module "tr1__random" { header "tr1/random.hpp" export * }
-  module "tr1__regex" { header "tr1/regex.hpp" export * }
-  module "tr1__tuple" { header "tr1/tuple.hpp" export * }
-  module "tr1__type_traits" { header "tr1/type_traits.hpp" export * }
-  module "tr1__unordered_map" { header "tr1/unordered_map.hpp" export * }
-  module "tr1__unordered_set" { header "tr1/unordered_set.hpp" export * }
-  module "tr1__utility" { header "tr1/utility.hpp" export * }
-}
 module boost_tti {
   module "tti__detail__dcomp_mem_fun" { header "tti/detail/dcomp_mem_fun.hpp" export * }
   module "tti__detail__ddata" { header "tti/detail/ddata.hpp" export * }
@@ -8886,7 +8835,6 @@ module boost_uuid {
   module "uuid__name_generator" { header "uuid/name_generator.hpp" export * }
   module "uuid__nil_generator" { header "uuid/nil_generator.hpp" export * }
   module "uuid__random_generator" { header "uuid/random_generator.hpp" export * }
-  //module "uuid__seed_rng" { header "uuid/seed_rng.hpp" export * }
   // deprecated: module "uuid__sha1" { header "uuid/sha1.hpp" export * }
   module "uuid__string_generator" { header "uuid/string_generator.hpp" export * }
   module "uuid__uuid_generators" { header "uuid/uuid_generators.hpp" export * }
