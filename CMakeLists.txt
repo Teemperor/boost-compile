@@ -9,7 +9,14 @@ endif()
 
 option(cms "Test CMS version of boost" On)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+if (cms)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+  include_directories(inc-cms)
+else()
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+  include_directories(inc)
+endif()
+
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" AND use_modules)
   # using Clang
@@ -42,12 +49,6 @@ endif()
 
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
-
-if (cms)
-  include_directories(inc-cms)
-else()
-  include_directories(inc)
-endif()
 
 find_package(PythonLibs REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
