@@ -8417,24 +8417,6 @@ module boost_token_iterator {
 module boost_tokenizer {
   module "tokenizer" { header "tokenizer.hpp" export * }
 }
-module boost_tr1 {
-  module "tr1__array" { header "tr1/array.hpp" export * }
-  module "tr1__cmath" { header "tr1/cmath.hpp" export * }
-  module "tr1__complex" { header "tr1/complex.hpp" export * }
-  module "tr1__detail__config_all" { header "tr1/detail/config_all.hpp" export * }
-  module "tr1__detail__config" { header "tr1/detail/config.hpp" export * }
-  module "tr1__detail__functor2iterator" { header "tr1/detail/functor2iterator.hpp" export * }
-  module "tr1__detail__math_overloads" { header "tr1/detail/math_overloads.hpp" export * }
-  module "tr1__functional" { header "tr1/functional.hpp" export * }
-  module "tr1__memory" { header "tr1/memory.hpp" export * }
-  module "tr1__random" { header "tr1/random.hpp" export * }
-  module "tr1__regex" { header "tr1/regex.hpp" export * }
-  module "tr1__tuple" { header "tr1/tuple.hpp" export * }
-  module "tr1__type_traits" { header "tr1/type_traits.hpp" export * }
-  module "tr1__unordered_map" { header "tr1/unordered_map.hpp" export * }
-  module "tr1__unordered_set" { header "tr1/unordered_set.hpp" export * }
-  module "tr1__utility" { header "tr1/utility.hpp" export * }
-}
 module boost_tti {
   module "tti__detail__dcomp_mem_fun" { header "tti/detail/dcomp_mem_fun.hpp" export * }
   module "tti__detail__ddata" { header "tti/detail/ddata.hpp" export * }
