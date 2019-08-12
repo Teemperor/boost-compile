@@ -1048,7 +1048,7 @@ module boost_function_types {
   module "function_types__property_tags" { header "function_types/property_tags.hpp" export * }
   module "function_types__result_type" { header "function_types/result_type.hpp" export * }
 }
-/*
+
 module boost_fusion {
   module "fusion__adapted__adt__adapt_adt" { header "fusion/adapted/adt/adapt_adt.hpp" export * }
   module "fusion__adapted__adt__adapt_adt_named" { header "fusion/adapted/adt/adapt_adt_named.hpp" export * }
@@ -1735,7 +1735,7 @@ module boost_fusion {
   module "fusion__view__zip_view__zip_view" { header "fusion/view/zip_view/zip_view.hpp" export * }
   module "fusion__view__zip_view__zip_view_iterator_fwd" { header "fusion/view/zip_view/zip_view_iterator_fwd.hpp" export * }
   module "fusion__view__zip_view__zip_view_iterator" { header "fusion/view/zip_view/zip_view_iterator.hpp" export * }
-} */
+}
 module boost_generator_iterator {
   module "generator_iterator" { header "generator_iterator.hpp" export * }
 }
